@@ -236,6 +236,33 @@
   .transfer-tag.best { background: rgba(212,168,83,0.15); color: var(--gold); }
   .transfer-tag.scenic { background: rgba(95,196,192,0.12); color: var(--teal); }
   .transfer-mode { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--muted); flex-shrink: 0; }
+
+  /* ACCESS OPTIONS IN RESORT CARDS */
+  .access-section-title { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 0.15em; color: var(--teal); text-transform: uppercase; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.5rem; }
+  .access-option { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 0.8rem; margin-bottom: 0.5rem; }
+  .access-option.best { border-color: rgba(212,168,83,0.3); background: linear-gradient(135deg, rgba(212,168,83,0.05), rgba(212,168,83,0.02)); }
+  .access-option-label { font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .access-option.best .access-option-label { color: var(--gold); }
+  .access-option:not(.best) .access-option-label { color: var(--muted); }
+  .access-flight-bar { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.35rem; flex-wrap: wrap; }
+  .access-flight-bar .iata { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 500; color: var(--snow); letter-spacing: 0.06em; }
+  .access-flight-bar .flight-arrow { color: var(--teal); font-size: 0.75rem; }
+  .access-flight-bar .city-name { font-size: 0.72rem; color: var(--ice); }
+  .access-schedule { background: rgba(0,113,188,0.06); border: 1px solid rgba(0,113,188,0.12); border-radius: 5px; padding: 0.45rem 0.6rem; margin-bottom: 0.5rem; }
+  .access-schedule-flight { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: #5aabf0; letter-spacing: 0.06em; margin-bottom: 0.15rem; }
+  .access-schedule-times { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--ice); }
+  .access-schedule-freq { font-size: 0.55rem; color: var(--muted); margin-top: 0.1rem; }
+  .access-transfers-title { font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.3rem; }
+  .access-xfer { display: flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0; }
+  .access-xfer:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,0.03); }
+  .access-xfer-icon { font-size: 0.8rem; width: 1.2rem; text-align: center; }
+  .access-xfer-route { font-size: 0.7rem; color: var(--snow); flex: 1; }
+  .access-xfer-mode { font-family: 'JetBrains Mono', monospace; font-size: 0.52rem; color: var(--muted); }
+  .access-xfer-time { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--glacier); }
+  .access-xfer-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.48rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.08rem 0.3rem; border-radius: 3px; }
+  .access-xfer-tag.fastest { background: rgba(212,168,83,0.15); color: var(--gold); }
+  .access-xfer-tag.scenic { background: rgba(95,196,192,0.12); color: var(--teal); }
+  .access-xfer-tag.daily { background: rgba(76,175,130,0.12); color: var(--green); }
 </style>
 </head>
 <body>
@@ -326,16 +353,37 @@
             <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:30%"></div></div></div>
           </div>
           <div class="card-divider"></div>
-          <div class="travel-section">
-            <div class="travel-title">✈ Icelandair direct <span class="fi-badge">FI568</span></div>
-            <div class="flight-row">
-              <div class="flight-airports"><span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span><span style="font-size:0.7rem;color:var(--ice);margin-left:0.4rem;">Zürich</span></div>
-              <div class="flight-meta">Icelandair · ~3h 45min · Year-round</div>
+          <div class="access-section-title">How to get there</div>
+
+          <div class="access-option best">
+            <div class="access-option-label">Best option</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span>
+              <span class="city-name">Zürich</span>
+              <span class="fi-badge">FI568</span>
             </div>
-            <div style="font-size:0.7rem; color:var(--ice); margin:0.3rem 0; font-family:'JetBrains Mono',monospace;">Dep 07:20 GMT → Arr 12:05 CET</div>
-            <div class="transfer-row">🚂 <span>Zürich → Zermatt · ~3.5h scenic train</span></div>
-            <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI568 · ~3h 45min</div>
+              <div class="access-schedule-times">Dep <strong>07:20</strong> GMT → Arr <strong>12:05</strong> CET</div>
+              <div class="access-schedule-freq">Year-round · Multiple days/week</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚂</span>
+              <span class="access-xfer-route">Zürich → Zermatt</span>
+              <span class="access-xfer-mode">Train</span>
+              <span class="access-xfer-time">~3.5h</span>
+              <span class="access-xfer-tag scenic">Scenic</span>
+            </div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚌</span>
+              <span class="access-xfer-route">Zürich → Visp, then bus</span>
+              <span class="access-xfer-mode">Train + Bus</span>
+              <span class="access-xfer-time">~3h</span>
+            </div>
           </div>
+
+          <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
           <div class="booking-grid">
             <a href="https://www.airbnb.com/s/Zermatt--Switzerland/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
             <a href="https://www.booking.com/searchresults.html?ss=Zermatt&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
@@ -377,16 +425,37 @@
             <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:60%"></div></div></div>
           </div>
           <div class="card-divider"></div>
-          <div class="travel-section">
-            <div class="travel-title">✈ Icelandair direct <span class="fi-badge">FI568</span></div>
-            <div class="flight-row">
-              <div class="flight-airports"><span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span><span style="font-size:0.7rem;color:var(--ice);margin-left:0.4rem;">Zürich</span></div>
-              <div class="flight-meta">Icelandair · ~3h 45min · Year-round</div>
+          <div class="access-section-title">How to get there</div>
+
+          <div class="access-option best">
+            <div class="access-option-label">Best option</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span>
+              <span class="city-name">Zürich</span>
+              <span class="fi-badge">FI568</span>
             </div>
-            <div style="font-size:0.7rem; color:var(--ice); margin:0.3rem 0; font-family:'JetBrains Mono',monospace;">Dep 07:20 GMT → Arr 12:05 CET</div>
-            <div class="transfer-row">🚌 <span>Zürich → Val Thorens · ~4h transfer or via Geneva by train</span></div>
-            <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI568 · ~3h 45min</div>
+              <div class="access-schedule-times">Dep <strong>07:20</strong> GMT → Arr <strong>12:05</strong> CET</div>
+              <div class="access-schedule-freq">Year-round · Multiple days/week</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚌</span>
+              <span class="access-xfer-route">Zürich → Val Thorens</span>
+              <span class="access-xfer-mode">Bus</span>
+              <span class="access-xfer-time">~4h</span>
+            </div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚂</span>
+              <span class="access-xfer-route">Zürich → Geneva → Val Thorens</span>
+              <span class="access-xfer-mode">Train + Bus</span>
+              <span class="access-xfer-time">~5h</span>
+              <span class="access-xfer-tag scenic">Scenic</span>
+            </div>
           </div>
+
+          <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
           <div class="booking-grid">
             <a href="https://www.airbnb.com/s/Val-Thorens--France/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
             <a href="https://www.booking.com/searchresults.html?ss=Val+Thorens&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
@@ -428,16 +497,59 @@
             <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:80%"></div></div></div>
           </div>
           <div class="card-divider"></div>
-          <div class="travel-section">
-            <div class="travel-title">✈ Icelandair direct <span class="fi-badge">FI576</span></div>
-            <div class="flight-row">
-              <div class="flight-airports"><span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">INN</span><span style="font-size:0.7rem;color:var(--ice);margin-left:0.4rem;">Innsbruck</span></div>
-              <div class="flight-meta">Icelandair FI576 · ~4h 10min · Weekly, winter ski season</div>
+          <div class="access-section-title">How to get there</div>
+
+          <div class="access-option best">
+            <div class="access-option-label">Best option · shortest transfer</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">INN</span>
+              <span class="city-name">Innsbruck</span>
+              <span class="fi-badge">FI576</span>
             </div>
-            <div style="font-size:0.7rem; color:var(--ice); margin:0.3rem 0; font-family:'JetBrains Mono',monospace;">Dep 09:55 GMT → Arr 15:05 CET · Saturdays</div>
-            <div class="transfer-row">🚌 <span>Innsbruck → St. Anton · ~1.5h transfer bus</span></div>
-            <a href="https://www.icelandair.com/flights/to-innsbruck/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → INN</a>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI576 · ~4h 10min</div>
+              <div class="access-schedule-times">Dep <strong>09:55</strong> GMT → Arr <strong>15:05</strong> CET</div>
+              <div class="access-schedule-freq">Saturdays · Winter season only</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚌</span>
+              <span class="access-xfer-route">Innsbruck → St. Anton</span>
+              <span class="access-xfer-mode">Bus</span>
+              <span class="access-xfer-time">~1.5h</span>
+              <span class="access-xfer-tag fastest">Fastest</span>
+            </div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚂</span>
+              <span class="access-xfer-route">Innsbruck → St. Anton</span>
+              <span class="access-xfer-mode">Train</span>
+              <span class="access-xfer-time">~1.5h</span>
+            </div>
           </div>
+
+          <div class="access-option">
+            <div class="access-option-label">Alternative · daily flights</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">MUC</span>
+              <span class="city-name">Munich</span>
+              <span class="fi-badge">FI532</span>
+            </div>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI532 · ~3h 45min</div>
+              <div class="access-schedule-times">Dep <strong>07:20</strong> GMT → Arr <strong>12:05</strong> CET</div>
+              <div class="access-schedule-freq">Daily · Year-round</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚂</span>
+              <span class="access-xfer-route">Munich → St. Anton</span>
+              <span class="access-xfer-mode">Train</span>
+              <span class="access-xfer-time">~2.5h</span>
+              <span class="access-xfer-tag daily">Daily</span>
+            </div>
+          </div>
+
+          <a href="https://www.icelandair.com/flights/to-innsbruck/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → INN</a>
           <div class="booking-grid">
             <a href="https://www.airbnb.com/s/St.-Anton-am-Arlberg--Austria/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
             <a href="https://www.booking.com/searchresults.html?ss=St+Anton+am+Arlberg&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
@@ -479,21 +591,80 @@
             <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:55%"></div></div></div>
           </div>
           <div class="card-divider"></div>
-          <div class="travel-section">
-            <div class="travel-title">✈ Icelandair direct <span class="fi-badge">FI574</span></div>
-            <div class="flight-row">
-              <div class="flight-airports"><span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">SZG</span><span style="font-size:0.7rem;color:var(--ice);margin-left:0.4rem;">Salzburg</span></div>
-              <div class="flight-meta">Icelandair FI574 · ~3h 50min · Weekly, winter ski season</div>
+          <div class="access-section-title">How to get there · 3 options</div>
+
+          <div class="access-option best">
+            <div class="access-option-label">Best option · closest gateway</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">SZG</span>
+              <span class="city-name">Salzburg</span>
+              <span class="fi-badge">FI574</span>
             </div>
-            <div style="font-size:0.7rem; color:var(--ice); margin:0.3rem 0; font-family:'JetBrains Mono',monospace;">Dep 08:00–08:40 GMT → Arr 12:50–13:30 CET · Saturdays</div>
-            <div class="transfer-row">🚌 <span>Salzburg → Kitzbühel · ~1h transfer · closest Icelandair gateway</span></div>
-            <div class="flight-row" style="margin-top:0.5rem; opacity:0.7;">
-              <div class="flight-airports"><span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">INN</span><span style="font-size:0.7rem;color:var(--ice);margin-left:0.4rem;">Innsbruck</span></div>
-              <div class="flight-meta">Icelandair FI576 · ~4h 10min · Alt. option, ~1.5h transfer</div>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI574 · ~3h 50min</div>
+              <div class="access-schedule-times">Dep <strong>08:00–08:40</strong> GMT → Arr <strong>12:50–13:30</strong> CET</div>
+              <div class="access-schedule-freq">Saturdays · Winter season only</div>
             </div>
-            <div style="font-size:0.65rem; color:var(--muted); margin:0.2rem 0; font-family:'JetBrains Mono',monospace;">Alt: Dep 09:55 → Arr 15:05 CET · Saturdays</div>
-            <a href="https://www.icelandair.com/flights/to-salzburg/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → SZG</a>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚌</span>
+              <span class="access-xfer-route">Salzburg → Kitzbühel</span>
+              <span class="access-xfer-mode">Bus</span>
+              <span class="access-xfer-time">~1h</span>
+              <span class="access-xfer-tag fastest">Fastest</span>
+            </div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚂</span>
+              <span class="access-xfer-route">Salzburg → Kitzbühel</span>
+              <span class="access-xfer-mode">Train</span>
+              <span class="access-xfer-time">~1.5h</span>
+            </div>
           </div>
+
+          <div class="access-option">
+            <div class="access-option-label">Alternative · same day</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">INN</span>
+              <span class="city-name">Innsbruck</span>
+              <span class="fi-badge">FI576</span>
+            </div>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI576 · ~4h 10min</div>
+              <div class="access-schedule-times">Dep <strong>09:55</strong> GMT → Arr <strong>15:05</strong> CET</div>
+              <div class="access-schedule-freq">Saturdays · Winter season only</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚌</span>
+              <span class="access-xfer-route">Innsbruck → Kitzbühel</span>
+              <span class="access-xfer-mode">Bus</span>
+              <span class="access-xfer-time">~1.5h</span>
+            </div>
+          </div>
+
+          <div class="access-option">
+            <div class="access-option-label">Alternative · daily flights year-round</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">MUC</span>
+              <span class="city-name">Munich</span>
+              <span class="fi-badge">FI532</span>
+            </div>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI532 · ~3h 45min</div>
+              <div class="access-schedule-times">Dep <strong>07:20</strong> GMT → Arr <strong>12:05</strong> CET</div>
+              <div class="access-schedule-freq">Daily · Year-round</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚂</span>
+              <span class="access-xfer-route">Munich → Kitzbühel</span>
+              <span class="access-xfer-mode">Train</span>
+              <span class="access-xfer-time">~2h</span>
+              <span class="access-xfer-tag daily">Daily</span>
+            </div>
+          </div>
+
+          <a href="https://www.icelandair.com/flights/to-salzburg/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → SZG</a>
           <div class="booking-grid">
             <a href="https://www.airbnb.com/s/Kitzbühel--Austria/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
             <a href="https://www.booking.com/searchresults.html?ss=Kitzbühel&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
@@ -535,16 +706,42 @@
             <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:80%"></div></div></div>
           </div>
           <div class="card-divider"></div>
-          <div class="travel-section">
-            <div class="travel-title">✈ Icelandair direct <span class="fi-badge">FI568</span></div>
-            <div class="flight-row">
-              <div class="flight-airports"><span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span><span style="font-size:0.7rem;color:var(--ice);margin-left:0.4rem;">Zürich</span></div>
-              <div class="flight-meta">Icelandair · ~3h 45min · Year-round</div>
+          <div class="access-section-title">How to get there</div>
+
+          <div class="access-option best">
+            <div class="access-option-label">Best option</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span>
+              <span class="city-name">Zürich</span>
+              <span class="fi-badge">FI568</span>
             </div>
-            <div style="font-size:0.7rem; color:var(--ice); margin:0.3rem 0; font-family:'JetBrains Mono',monospace;">Dep 07:20 GMT → Arr 12:05 CET</div>
-            <div class="transfer-row">🚂🚌 <span>Zürich → Bourg-St-Maurice by train, then bus · ~4.5h total</span></div>
-            <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI568 · ~3h 45min</div>
+              <div class="access-schedule-times">Dep <strong>07:20</strong> GMT → Arr <strong>12:05</strong> CET</div>
+              <div class="access-schedule-freq">Year-round · Multiple days/week</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚂</span>
+              <span class="access-xfer-route">Zürich → Bourg-St-Maurice</span>
+              <span class="access-xfer-mode">Train</span>
+              <span class="access-xfer-time">~4h</span>
+            </div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚌</span>
+              <span class="access-xfer-route">Bourg-St-Maurice → Les Arcs</span>
+              <span class="access-xfer-mode">Funicular</span>
+              <span class="access-xfer-time">~7min</span>
+            </div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚌</span>
+              <span class="access-xfer-route">Direct bus Zürich → Les Arcs</span>
+              <span class="access-xfer-mode">Bus</span>
+              <span class="access-xfer-time">~4.5h</span>
+            </div>
           </div>
+
+          <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
           <div class="booking-grid">
             <a href="https://www.airbnb.com/s/Les-Arcs--France/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
             <a href="https://www.booking.com/searchresults.html?ss=Les+Arcs&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
@@ -586,16 +783,38 @@
             <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:20%"></div></div></div>
           </div>
           <div class="card-divider"></div>
-          <div class="travel-section">
-            <div class="travel-title">✈ Icelandair direct <span class="fi-badge">FI568</span></div>
-            <div class="flight-row">
-              <div class="flight-airports"><span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span><span style="font-size:0.7rem;color:var(--ice);margin-left:0.4rem;">Zürich</span></div>
-              <div class="flight-meta">Icelandair · ~3h 45min · Year-round</div>
+          <div class="access-section-title">How to get there</div>
+
+          <div class="access-option best">
+            <div class="access-option-label">Best option</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span>
+              <span class="city-name">Zürich</span>
+              <span class="fi-badge">FI568</span>
             </div>
-            <div style="font-size:0.7rem; color:var(--ice); margin:0.3rem 0; font-family:'JetBrains Mono',monospace;">Dep 07:20 GMT → Arr 12:05 CET</div>
-            <div class="transfer-row">🚌 <span>Zürich → Verbier · ~2.5h transfer</span></div>
-            <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI568 · ~3h 45min</div>
+              <div class="access-schedule-times">Dep <strong>07:20</strong> GMT → Arr <strong>12:05</strong> CET</div>
+              <div class="access-schedule-freq">Year-round · Multiple days/week</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚌</span>
+              <span class="access-xfer-route">Zürich → Verbier</span>
+              <span class="access-xfer-mode">Bus</span>
+              <span class="access-xfer-time">~2.5h</span>
+              <span class="access-xfer-tag fastest">Fastest</span>
+            </div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚂</span>
+              <span class="access-xfer-route">Zürich → Le Châble + cable car</span>
+              <span class="access-xfer-mode">Train + Cable car</span>
+              <span class="access-xfer-time">~3h</span>
+              <span class="access-xfer-tag scenic">Scenic</span>
+            </div>
           </div>
+
+          <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
           <div class="booking-grid">
             <a href="https://www.airbnb.com/s/Verbier--Switzerland/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
             <a href="https://www.booking.com/searchresults.html?ss=Verbier&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
