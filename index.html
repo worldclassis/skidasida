@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alpine March 2026 — Ski Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b1520;
+    --surface: #111d2e;
+    --surface2: #172234;
+    --border: rgba(255,255,255,0.07);
+    --snow: #e8eef4;
+    --ice: #b4cfe0;
+    --glacier: #7aafc4;
+    --muted: #4a6a80;
+    --gold: #d4a853;
+    --gold-dim: rgba(212,168,83,0.12);
+    --teal: #5fc4c0;
+    --teal-dim: rgba(95,196,192,0.1);
+    --green: #4caf82;
+    --amber: #e8a840;
+    --red: #d05555;
+    --radius: 12px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--snow); font-family: 'Outfit', sans-serif; font-weight: 300; min-height: 100vh; overflow-x: hidden; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 2px; }
+
+  /* HERO */
+  .hero {
+    position: relative; min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center;
+    padding: 5rem 2rem 3rem; overflow: hidden;
+    background: radial-gradient(ellipse 100% 80% at 50% 100%, rgba(95,196,192,0.06), transparent),
+                radial-gradient(ellipse 60% 40% at 20% 30%, rgba(212,168,83,0.05), transparent), var(--bg);
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 260px;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%235fc4c0' stop-opacity='0.12'/%3E%3Cstop offset='1' stop-color='%235fc4c0' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,260 L0,180 L60,150 L120,170 L200,100 L280,130 L360,70 L440,110 L520,50 L600,85 L680,30 L760,65 L840,20 L920,55 L1000,15 L1080,50 L1160,0 L1240,40 L1320,10 L1380,35 L1440,20 L1440,260Z' fill='url(%23g1)'/%3E%3Cpath d='M0,260 L0,200 L100,165 L200,185 L320,140 L420,160 L540,115 L640,140 L760,100 L860,128 L980,88 L1080,112 L1200,75 L1300,100 L1440,70 L1440,260Z' fill='rgba(255,255,255,0.025)'/%3E%3C/svg%3E") no-repeat bottom;
+    background-size: cover; pointer-events: none;
+  }
+  .snow-container { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .flake { position: absolute; background: white; border-radius: 50%; opacity: 0; animation: snowfall linear infinite; }
+  @keyframes snowfall {
+    0% { transform: translateY(-20px) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; } 90% { opacity: 0.3; }
+    100% { transform: translateY(100vh) translateX(40px); opacity: 0; }
+  }
+  .hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--teal); text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0; animation: riseIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s forwards; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(4rem, 10vw, 9rem); font-weight: 300; line-height: 0.9; letter-spacing: -0.02em; opacity: 0; animation: riseIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s forwards; }
+  .hero h1 em { font-style: italic; color: var(--gold); font-weight: 600; }
+  .hero-meta { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; opacity: 0; animation: riseIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.7s forwards; }
+  .pill { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em; padding: 0.45rem 1rem; border-radius: 100px; border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--ice); }
+  .pill.accent { border-color: rgba(212,168,83,0.3); color: var(--gold); background: var(--gold-dim); }
+  .scroll-hint { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; animation: pulse 2s ease infinite; }
+  .scroll-hint::after { content: ''; width: 1px; height: 30px; background: linear-gradient(var(--muted), transparent); animation: drip 2s ease infinite; }
+  @keyframes drip { 0%,100% { height: 30px; opacity: 0.4; } 50% { height: 50px; opacity: 0.8; } }
+  @keyframes pulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+  @keyframes riseIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(11,21,32,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  nav::-webkit-scrollbar { display: none; }
+  nav a { flex-shrink: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 1rem 1.4rem; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; white-space: nowrap; }
+  nav a:hover { color: var(--snow); border-bottom-color: var(--teal); }
+  nav a.active { color: var(--teal); border-bottom-color: var(--teal); }
+
+  /* LAYOUT */
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+  section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; color: var(--teal); text-transform: uppercase; margin-bottom: 0.6rem; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; font-style: italic; margin-bottom: 3rem; }
+
+  /* WEATHER STRIP */
+  .weather-strip { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 2rem; margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .weather-strip-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--teal); text-transform: uppercase; flex-shrink: 0; display: flex; align-items: center; gap: 0.5rem; }
+  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); animation: blink 2s ease infinite; }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .weather-items { display: flex; gap: 1.5rem; flex-wrap: wrap; flex: 1; }
+  .weather-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; }
+  .weather-resort-name { color: var(--ice); font-weight: 500; }
+  .weather-temp { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--teal); }
+  .weather-desc { font-size: 0.72rem; color: var(--muted); }
+  .weather-icon { font-size: 1.1rem; }
+
+  /* RESORT GRID — 3 cols on wide screens */
+  .resort-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  @media (max-width: 1100px) { .resort-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 680px) { .resort-grid { grid-template-columns: 1fr; } }
+
+  /* CARD */
+  .resort-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; }
+  .resort-card:hover { transform: translateY(-4px); border-color: rgba(95,196,192,0.2); }
+  .resort-card.featured { border-color: rgba(212,168,83,0.3); background: linear-gradient(135deg, var(--surface), rgba(212,168,83,0.04)); }
+  .resort-card.featured:hover { border-color: rgba(212,168,83,0.5); }
+  .card-top-bar { height: 3px; background: var(--border); }
+  .resort-card.featured .card-top-bar { background: linear-gradient(90deg, var(--gold), rgba(212,168,83,0.2)); }
+  .resort-card.good .card-top-bar { background: linear-gradient(90deg, var(--teal), rgba(95,196,192,0.2)); }
+  .card-body { padding: 1.6rem; }
+  .card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.2rem; }
+  .resort-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 600; line-height: 1; }
+  .resort-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; color: var(--glacier); margin-top: 0.3rem; text-transform: uppercase; }
+  .badge { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 0.06em; padding: 0.28rem 0.65rem; border-radius: 100px; white-space: nowrap; flex-shrink: 0; margin-left: 0.5rem; }
+  .badge-gold { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(212,168,83,0.25); }
+  .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(95,196,192,0.2); }
+  .badge-muted { background: rgba(255,255,255,0.04); color: var(--glacier); border: 1px solid var(--border); }
+
+  /* LIVE WEATHER IN CARD */
+  .card-weather { background: var(--bg); border-radius: 8px; padding: 0.8rem 1rem; margin-bottom: 1.1rem; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.4rem; }
+  .cw-item { text-align: center; }
+  .cw-val { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--teal); display: block; }
+  .cw-icon { font-size: 1.1rem; display: block; margin-bottom: 0.15rem; }
+  .cw-label { font-family: 'JetBrains Mono', monospace; font-size: 0.52rem; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; display: block; }
+
+  /* SNOW BARS */
+  .snow-row { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1rem; }
+  .snow-label-text { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; width: 78px; flex-shrink: 0; }
+  .snow-track { flex: 1; height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+  .snow-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--teal), rgba(95,196,192,0.4)); transition: width 1.2s cubic-bezier(0.16,1,0.3,1); }
+  .snow-num { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--snow); width: 62px; text-align: right; flex-shrink: 0; }
+
+  /* STATS */
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1rem; }
+  .stat { background: var(--bg); border-radius: 6px; padding: 0.6rem 0.5rem; text-align: center; }
+  .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--snow); display: block; }
+  .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; display: block; margin-top: 0.1rem; }
+
+  /* TAGS */
+  .tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 1rem; }
+  .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; letter-spacing: 0.05em; padding: 0.18rem 0.5rem; border-radius: 3px; background: rgba(255,255,255,0.04); color: var(--glacier); border: 1px solid var(--border); }
+
+  /* RATINGS */
+  .ratings { display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 1.2rem; }
+  .rating-row { display: flex; align-items: center; gap: 0.6rem; }
+  .r-label { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; width: 76px; flex-shrink: 0; }
+  .r-bar { flex: 1; height: 2px; background: rgba(255,255,255,0.06); border-radius: 1px; overflow: hidden; }
+  .r-fill { height: 100%; border-radius: 1px; background: var(--teal); opacity: 0.7; }
+  .card-divider { height: 1px; background: var(--border); margin: 1.1rem 0; }
+
+  /* FLIGHT SECTION */
+  .travel-section { margin-bottom: 1.1rem; }
+  .travel-title { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.18em; color: var(--teal); text-transform: uppercase; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.5rem; }
+  .flight-row { background: rgba(95,196,192,0.06); border: 1px solid rgba(95,196,192,0.12); border-radius: 7px; padding: 0.75rem 0.85rem; margin-bottom: 0.4rem; }
+  .flight-airports { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; }
+  .iata { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 500; color: var(--snow); }
+  .flight-arrow { color: var(--muted); font-size: 0.8rem; }
+  .flight-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--muted); letter-spacing: 0.04em; }
+  .no-direct { background: rgba(208,85,85,0.06); border: 1px solid rgba(208,85,85,0.15); border-radius: 7px; padding: 0.65rem 0.85rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(208,85,85,0.8); letter-spacing: 0.04em; }
+  .transfer-row { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--ice); margin-top: 0.4rem; }
+  .transfer-row span { color: var(--muted); font-size: 0.7rem; }
+  .book-flight-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 0.7rem; margin-top: 0.5rem; border-radius: 7px; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(95,196,192,0.1); border: 1px solid rgba(95,196,192,0.25); color: var(--teal); transition: all 0.2s; }
+  .book-flight-btn:hover { background: rgba(95,196,192,0.18); }
+
+  /* BOOKING GRID */
+  .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem; }
+  .booking-btn { display: flex; align-items: center; gap: 0.45rem; padding: 0.6rem 0.75rem; border-radius: 7px; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 0.04em; transition: all 0.2s ease; border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--ice); text-transform: uppercase; }
+  .booking-btn:hover { background: rgba(255,255,255,0.07); border-color: rgba(95,196,192,0.25); color: var(--snow); }
+  .booking-btn.primary { background: rgba(212,168,83,0.1); border-color: rgba(212,168,83,0.25); color: var(--gold); }
+  .booking-btn.primary:hover { background: rgba(212,168,83,0.18); }
+  .btn-icon { font-size: 1rem; }
+
+  /* TABLE */
+  .table-wrapper { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 900px; }
+  thead th { padding: 1rem 1.2rem; text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); background: var(--surface); white-space: nowrap; }
+  thead th:first-child { color: var(--glacier); }
+  tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+  tbody td { padding: 0.8rem 1.2rem; white-space: nowrap; vertical-align: middle; }
+  tbody td:first-child { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .resort-th { font-family: 'Cormorant Garamond', serif !important; font-size: 1rem !important; font-weight: 600 !important; color: var(--snow) !important; letter-spacing: 0 !important; text-transform: none !important; }
+  .t-yes { color: var(--green); } .t-no { color: rgba(255,255,255,0.12); } .t-partial { color: var(--amber); }
+  .t-warn { color: var(--red); } .t-green { color: var(--green); } .t-amber { color: var(--amber); }
+
+  /* VERDICT */
+  .verdict-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
+  .verdict-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.3rem; transition: border-color 0.2s; }
+  .verdict-card:hover { border-color: rgba(212,168,83,0.2); }
+  .verdict-type { font-family: 'JetBrains Mono', monospace; font-size: 0.56rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.4rem; }
+  .verdict-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .verdict-text { font-size: 0.78rem; color: var(--ice); line-height: 1.55; }
+
+  /* REFRESH */
+  .refresh-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); background: var(--teal-dim); border: 1px solid rgba(95,196,192,0.2); border-radius: 100px; padding: 0.35rem 0.9rem; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.4rem; margin-left: 1rem; }
+  .refresh-btn:hover { background: rgba(95,196,192,0.18); }
+  .refresh-btn.spinning .spin { animation: spin 1s linear infinite; }
+  .spin { display: inline-block; }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  .loading { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); animation: pulse 1.5s ease infinite; }
+
+  footer { padding: 3rem 2rem; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--muted); }
+  footer a { color: var(--glacier); text-decoration: none; }
+  footer a:hover { color: var(--teal); }
+
+  /* ICELANDAIR BADGE */
+  .fi-badge { display: inline-flex; align-items: center; gap: 0.3rem; font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; letter-spacing: 0.08em; padding: 0.2rem 0.55rem; border-radius: 4px; background: rgba(0,113,188,0.15); border: 1px solid rgba(0,113,188,0.3); color: #5aabf0; text-transform: uppercase; margin-left: 0.4rem; }
+
+  /* ICELANDAIR ONLY NOTICE */
+  .fi-only-notice { background: rgba(0,113,188,0.08); border: 1px solid rgba(0,113,188,0.2); border-radius: var(--radius); padding: 1rem 1.4rem; margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.06em; color: #5aabf0; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="snow-container" id="snowContainer"></div>
+  <div class="hero-eyebrow">✦ Reykjavík → The Alps · Icelandair direct flights only</div>
+  <h1>March<br>in the <em>Alps</em></h1>
+  <div class="hero-meta">
+    <span class="pill accent">✈ 13 March 2026</span>
+    <span class="pill accent">⛷ 5 nights</span>
+    <span class="pill accent">↩ 18 March 2026</span>
+    <span class="pill">6 resorts compared</span>
+    <span class="pill">Live weather</span>
+    <span class="pill">Icelandair only</span>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</div>
+
+<nav id="mainNav">
+  <a href="#conditions" class="active">Conditions</a>
+  <a href="#resorts">Resorts</a>
+  <a href="#compare">Compare</a>
+  <a href="#flights">Flights</a>
+  <a href="#verdict">Verdict</a>
+</nav>
+
+<!-- CONDITIONS -->
+<section id="conditions">
+  <div class="container">
+    <div class="section-label">01 — live data</div>
+    <h2 class="section-title">Current mountain conditions
+      <button class="refresh-btn" id="refreshBtn" onclick="fetchAllWeather()">
+        <span class="spin">↻</span> Refresh
+      </button>
+    </h2>
+    <div class="weather-strip" id="weatherStrip">
+      <div class="weather-strip-label"><span class="live-dot"></span> Live weather</div>
+      <div class="weather-items" id="weatherItems"><span class="loading">Fetching live weather data...</span></div>
+    </div>
+    <p style="font-size:0.75rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; letter-spacing:0.04em;">
+      ↳ Open-Meteo API · resort altitude · Last updated: <span id="lastUpdated">loading...</span>
+    </p>
+  </div>
+</section>
+
+<!-- RESORTS -->
+<section id="resorts">
+  <div class="container">
+    <div class="section-label">02 — full profiles</div>
+    <div class="section-title">Six resorts, all Icelandair direct</div>
+
+    <div class="fi-only-notice">
+      ✈ All resorts below are reachable on direct Icelandair flights from KEF · ZRH · INN · SZG · MUC · no connections needed
+    </div>
+
+    <div class="resort-grid">
+
+      <!-- ZERMATT -->
+      <div class="resort-card featured">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-head">
+            <div>
+              <div class="resort-name">Zermatt</div>
+              <div class="resort-meta">🇨🇭 Switzerland · 1620m</div>
+            </div>
+            <span class="badge badge-gold">⭐ Top Pick</span>
+          </div>
+          <div class="card-weather" id="weather-zermatt">
+            <div class="cw-item"><span class="cw-icon">⏳</span><span class="cw-val loading">—</span><span class="cw-label">Temp</span></div>
+            <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
+            <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
+          </div>
+          <div class="snow-row"><span class="snow-label-text">Pistes open</span><div class="snow-track"><div class="snow-fill" style="width:87%"></div></div><span class="snow-num">279/322km</span></div>
+          <div class="snow-row"><span class="snow-label-text">Snow depth</span><div class="snow-track"><div class="snow-fill" style="width:92%"></div></div><span class="snow-num">200+ cm</span></div>
+          <div class="stats-grid">
+            <div class="stat"><span class="stat-val">3,883m</span><span class="stat-label">Summit</span></div>
+            <div class="stat"><span class="stat-val">322km</span><span class="stat-label">Pistes</span></div>
+            <div class="stat"><span class="stat-val">5★</span><span class="stat-label">Snow safety</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Glacier skiing</span><span class="tag">Car-free</span><span class="tag">Italy link</span><span class="tag">Matterhorn</span>
+          </div>
+          <div class="ratings">
+            <div class="rating-row"><span class="r-label">Après ski</span><div class="r-bar"><div class="r-fill" style="width:80%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Terrain</span><div class="r-bar"><div class="r-fill" style="width:100%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:30%"></div></div></div>
+          </div>
+          <div class="card-divider"></div>
+          <div class="travel-section">
+            <div class="travel-title">✈ Icelandair direct <span class="fi-badge">FI</span></div>
+            <div class="flight-row">
+              <div class="flight-airports"><span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span><span style="font-size:0.7rem;color:var(--ice);margin-left:0.4rem;">Zürich</span></div>
+              <div class="flight-meta">Icelandair · ~4h 45min · Year-round</div>
+            </div>
+            <div class="transfer-row">🚂 <span>Zürich → Zermatt · ~3.5h scenic train</span></div>
+            <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
+          </div>
+          <div class="booking-grid">
+            <a href="https://www.airbnb.com/s/Zermatt--Switzerland/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
+            <a href="https://www.booking.com/searchresults.html?ss=Zermatt&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
+            <a href="https://www.zermatt.ch/en/weather" target="_blank" class="booking-btn"><span class="btn-icon">🌨</span> Snow report</a>
+            <a href="https://www.sbb.ch/en" target="_blank" class="booking-btn"><span class="btn-icon">🚂</span> Swiss Rail</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- VAL THORENS -->
+      <div class="resort-card good">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-head">
+            <div>
+              <div class="resort-name">Val Thorens</div>
+              <div class="resort-meta">🇫🇷 France · 2300m</div>
+            </div>
+            <span class="badge badge-teal">Best snow</span>
+          </div>
+          <div class="card-weather" id="weather-valthorens">
+            <div class="cw-item"><span class="cw-icon">⏳</span><span class="cw-val loading">—</span><span class="cw-label">Temp</span></div>
+            <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
+            <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
+          </div>
+          <div class="snow-row"><span class="snow-label-text">Snow base</span><div class="snow-track"><div class="snow-fill" style="width:97%"></div></div><span class="snow-num">160–300cm</span></div>
+          <div class="snow-row"><span class="snow-label-text">Total pistes</span><div class="snow-track"><div class="snow-fill" style="width:100%"></div></div><span class="snow-num">600km</span></div>
+          <div class="stats-grid">
+            <div class="stat"><span class="stat-val">3,230m</span><span class="stat-label">Summit</span></div>
+            <div class="stat"><span class="stat-val">600km</span><span class="stat-label">Pistes</span></div>
+            <div class="stat"><span class="stat-val">5★</span><span class="stat-label">Snow safety</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Les 3 Vallées</span><span class="tag">Europe's highest base</span><span class="tag">Ski-in/out</span>
+          </div>
+          <div class="ratings">
+            <div class="rating-row"><span class="r-label">Après ski</span><div class="r-bar"><div class="r-fill" style="width:80%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Terrain</span><div class="r-bar"><div class="r-fill" style="width:100%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:60%"></div></div></div>
+          </div>
+          <div class="card-divider"></div>
+          <div class="travel-section">
+            <div class="travel-title">✈ Icelandair direct <span class="fi-badge">FI</span></div>
+            <div class="flight-row">
+              <div class="flight-airports"><span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span><span style="font-size:0.7rem;color:var(--ice);margin-left:0.4rem;">Zürich</span></div>
+              <div class="flight-meta">Icelandair · ~4h 45min · Year-round</div>
+            </div>
+            <div class="transfer-row">🚌 <span>Zürich → Val Thorens · ~4h transfer or via Geneva by train</span></div>
+            <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
+          </div>
+          <div class="booking-grid">
+            <a href="https://www.airbnb.com/s/Val-Thorens--France/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
+            <a href="https://www.booking.com/searchresults.html?ss=Val+Thorens&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
+            <a href="https://www.seevalthorens.com/snow/" target="_blank" class="booking-btn"><span class="btn-icon">🌨</span> Snow report</a>
+            <a href="https://www.altibus.com/en/" target="_blank" class="booking-btn"><span class="btn-icon">🚌</span> Altibus</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ST. ANTON -->
+      <div class="resort-card good">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-head">
+            <div>
+              <div class="resort-name">St. Anton</div>
+              <div class="resort-meta">🇦🇹 Austria · 1304m</div>
+            </div>
+            <span class="badge badge-teal">Best après</span>
+          </div>
+          <div class="card-weather" id="weather-stanton">
+            <div class="cw-item"><span class="cw-icon">⏳</span><span class="cw-val loading">—</span><span class="cw-label">Temp</span></div>
+            <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
+            <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
+          </div>
+          <div class="snow-row"><span class="snow-label-text">Conditions</span><div class="snow-track"><div class="snow-fill" style="width:70%"></div></div><span class="snow-num">Improving</span></div>
+          <div class="snow-row"><span class="snow-label-text">Arlberg km</span><div class="snow-track"><div class="snow-fill" style="width:78%"></div></div><span class="snow-num">305km</span></div>
+          <div class="stats-grid">
+            <div class="stat"><span class="stat-val">2,811m</span><span class="stat-label">Summit</span></div>
+            <div class="stat"><span class="stat-val">305km</span><span class="stat-label">Pistes</span></div>
+            <div class="stat"><span class="stat-val">3.5★</span><span class="stat-label">Snow safety</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Off-piste legend</span><span class="tag">Wildest après</span><span class="tag">Arlberg network</span>
+          </div>
+          <div class="ratings">
+            <div class="rating-row"><span class="r-label">Après ski</span><div class="r-bar"><div class="r-fill" style="width:100%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Terrain</span><div class="r-bar"><div class="r-fill" style="width:90%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:80%"></div></div></div>
+          </div>
+          <div class="card-divider"></div>
+          <div class="travel-section">
+            <div class="travel-title">✈ Icelandair direct <span class="fi-badge">FI</span></div>
+            <div class="flight-row">
+              <div class="flight-airports"><span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">INN</span><span style="font-size:0.7rem;color:var(--ice);margin-left:0.4rem;">Innsbruck</span></div>
+              <div class="flight-meta">Icelandair FI576 · ~4h 10min · Weekly, winter ski season</div>
+            </div>
+            <div class="transfer-row">🚌 <span>Innsbruck → St. Anton · ~1.5h transfer bus</span></div>
+            <a href="https://www.icelandair.com/flights/to-innsbruck/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → INN</a>
+          </div>
+          <div class="booking-grid">
+            <a href="https://www.airbnb.com/s/St.-Anton-am-Arlberg--Austria/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
+            <a href="https://www.booking.com/searchresults.html?ss=St+Anton+am+Arlberg&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
+            <a href="https://www.stantonamarlberg.com/en/weather-report" target="_blank" class="booking-btn"><span class="btn-icon">🌨</span> Snow report</a>
+            <a href="https://www.skiresort.info/ski-resort/st-anton-am-arlberg/" target="_blank" class="booking-btn"><span class="btn-icon">⛷</span> Ski info</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- KITZBÜHEL -->
+      <div class="resort-card featured">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-head">
+            <div>
+              <div class="resort-name">Kitzbühel</div>
+              <div class="resort-meta">🇦🇹 Austria · 884m village</div>
+            </div>
+            <span class="badge badge-gold">⭐ New</span>
+          </div>
+          <div class="card-weather" id="weather-kitzbuehel">
+            <div class="cw-item"><span class="cw-icon">⏳</span><span class="cw-val loading">—</span><span class="cw-label">Temp</span></div>
+            <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
+            <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
+          </div>
+          <div class="snow-row"><span class="snow-label-text">Snow base</span><div class="snow-track"><div class="snow-fill" style="width:68%"></div></div><span class="snow-num">65–85cm</span></div>
+          <div class="snow-row"><span class="snow-label-text">Lifts open</span><div class="snow-track"><div class="snow-fill" style="width:93%"></div></div><span class="snow-num">54/58</span></div>
+          <div class="stats-grid">
+            <div class="stat"><span class="stat-val">1,996m</span><span class="stat-label">Summit</span></div>
+            <div class="stat"><span class="stat-val">188km</span><span class="stat-label">Pistes</span></div>
+            <div class="stat"><span class="stat-val">3★</span><span class="stat-label">Snow safety</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Hahnenkamm downhill</span><span class="tag">Iconic village</span><span class="tag">500 snow guns</span><span class="tag">Charming old town</span>
+          </div>
+          <div class="ratings">
+            <div class="rating-row"><span class="r-label">Après ski</span><div class="r-bar"><div class="r-fill" style="width:90%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Terrain</span><div class="r-bar"><div class="r-fill" style="width:72%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:55%"></div></div></div>
+          </div>
+          <div class="card-divider"></div>
+          <div class="travel-section">
+            <div class="travel-title">✈ Icelandair direct <span class="fi-badge">FI</span></div>
+            <div class="flight-row">
+              <div class="flight-airports"><span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">SZG</span><span style="font-size:0.7rem;color:var(--ice);margin-left:0.4rem;">Salzburg</span></div>
+              <div class="flight-meta">Icelandair FI574 · ~3h 50min · Weekly, winter ski season</div>
+            </div>
+            <div class="transfer-row">🚌 <span>Salzburg → Kitzbühel · ~1h transfer · closest Icelandair gateway</span></div>
+            <div class="flight-row" style="margin-top:0.5rem; opacity:0.7;">
+              <div class="flight-airports"><span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">INN</span><span style="font-size:0.7rem;color:var(--ice);margin-left:0.4rem;">Innsbruck</span></div>
+              <div class="flight-meta">Icelandair FI576 · ~4h 10min · Alt. option, ~1.5h transfer</div>
+            </div>
+            <a href="https://www.icelandair.com/flights/to-salzburg/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → SZG</a>
+          </div>
+          <div class="booking-grid">
+            <a href="https://www.airbnb.com/s/Kitzbühel--Austria/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
+            <a href="https://www.booking.com/searchresults.html?ss=Kitzbühel&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
+            <a href="https://www.snow-forecast.com/resorts/Kitzbuhel/6day/mid" target="_blank" class="booking-btn"><span class="btn-icon">🌨</span> Snow report</a>
+            <a href="https://www.kitzbuehelski.com/en" target="_blank" class="booking-btn"><span class="btn-icon">⛷</span> Resort site</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LES ARCS -->
+      <div class="resort-card">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-head">
+            <div>
+              <div class="resort-name">Les Arcs</div>
+              <div class="resort-meta">🇫🇷 France · 1600–2000m</div>
+            </div>
+            <span class="badge badge-muted">Groups</span>
+          </div>
+          <div class="card-weather" id="weather-lesarcs">
+            <div class="cw-item"><span class="cw-icon">⏳</span><span class="cw-val loading">—</span><span class="cw-label">Temp</span></div>
+            <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
+            <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
+          </div>
+          <div class="snow-row"><span class="snow-label-text">Conditions</span><div class="snow-track"><div class="snow-fill" style="width:82%"></div></div><span class="snow-num">Very good</span></div>
+          <div class="snow-row"><span class="snow-label-text">Paradiski km</span><div class="snow-track"><div class="snow-fill" style="width:88%"></div></div><span class="snow-num">425km</span></div>
+          <div class="stats-grid">
+            <div class="stat"><span class="stat-val">3,226m</span><span class="stat-label">Summit</span></div>
+            <div class="stat"><span class="stat-val">425km</span><span class="stat-label">Pistes</span></div>
+            <div class="stat"><span class="stat-val">4.5★</span><span class="stat-label">Snow safety</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Paradiski</span><span class="tag">La Plagne link</span><span class="tag">Ski-in/out</span><span class="tag">All levels</span>
+          </div>
+          <div class="ratings">
+            <div class="rating-row"><span class="r-label">Après ski</span><div class="r-bar"><div class="r-fill" style="width:60%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Terrain</span><div class="r-bar"><div class="r-fill" style="width:84%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:80%"></div></div></div>
+          </div>
+          <div class="card-divider"></div>
+          <div class="travel-section">
+            <div class="travel-title">✈ Icelandair direct <span class="fi-badge">FI</span></div>
+            <div class="flight-row">
+              <div class="flight-airports"><span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span><span style="font-size:0.7rem;color:var(--ice);margin-left:0.4rem;">Zürich</span></div>
+              <div class="flight-meta">Icelandair · ~4h 45min · Year-round</div>
+            </div>
+            <div class="transfer-row">🚂🚌 <span>Zürich → Bourg-St-Maurice by train, then bus · ~4.5h total</span></div>
+            <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
+          </div>
+          <div class="booking-grid">
+            <a href="https://www.airbnb.com/s/Les-Arcs--France/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
+            <a href="https://www.booking.com/searchresults.html?ss=Les+Arcs&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
+            <a href="https://www.snow-forecast.com/resorts/Les-Arcs/snow-report" target="_blank" class="booking-btn"><span class="btn-icon">🌨</span> Snow report</a>
+            <a href="https://www.bensbus.co.uk" target="_blank" class="booking-btn"><span class="btn-icon">🚌</span> Ben's Bus</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- VERBIER -->
+      <div class="resort-card">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-head">
+            <div>
+              <div class="resort-name">Verbier</div>
+              <div class="resort-meta">🇨🇭 Switzerland · 1500m</div>
+            </div>
+            <span class="badge badge-muted">Prestige</span>
+          </div>
+          <div class="card-weather" id="weather-verbier">
+            <div class="cw-item"><span class="cw-icon">⏳</span><span class="cw-val loading">—</span><span class="cw-label">Temp</span></div>
+            <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
+            <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
+          </div>
+          <div class="snow-row"><span class="snow-label-text">Lifts open</span><div class="snow-track"><div class="snow-fill" style="width:85%"></div></div><span class="snow-num">All open</span></div>
+          <div class="snow-row"><span class="snow-label-text">4 Vallées km</span><div class="snow-track"><div class="snow-fill" style="width:85%"></div></div><span class="snow-num">412km</span></div>
+          <div class="stats-grid">
+            <div class="stat"><span class="stat-val">3,330m</span><span class="stat-label">Summit</span></div>
+            <div class="stat"><span class="stat-val">412km</span><span class="stat-label">Pistes</span></div>
+            <div class="stat"><span class="stat-val">4.5★</span><span class="stat-label">Snow safety</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag">4 Vallées</span><span class="tag">World-class off-piste</span><span class="tag">Prestige crowd</span>
+          </div>
+          <div class="ratings">
+            <div class="rating-row"><span class="r-label">Après ski</span><div class="r-bar"><div class="r-fill" style="width:80%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Terrain</span><div class="r-bar"><div class="r-fill" style="width:90%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:20%"></div></div></div>
+          </div>
+          <div class="card-divider"></div>
+          <div class="travel-section">
+            <div class="travel-title">✈ Icelandair direct <span class="fi-badge">FI</span></div>
+            <div class="flight-row">
+              <div class="flight-airports"><span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span><span style="font-size:0.7rem;color:var(--ice);margin-left:0.4rem;">Zürich</span></div>
+              <div class="flight-meta">Icelandair · ~4h 45min · Year-round</div>
+            </div>
+            <div class="transfer-row">🚌 <span>Zürich → Verbier · ~2.5h transfer</span></div>
+            <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
+          </div>
+          <div class="booking-grid">
+            <a href="https://www.airbnb.com/s/Verbier--Switzerland/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
+            <a href="https://www.booking.com/searchresults.html?ss=Verbier&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
+            <a href="https://www.snow-forecast.com/resorts/Verbier/snow-report" target="_blank" class="booking-btn"><span class="btn-icon">🌨</span> Snow report</a>
+            <a href="https://www.skiresort.info/ski-resort/verbier/" target="_blank" class="booking-btn"><span class="btn-icon">⛷</span> Ski info</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section id="compare">
+  <div class="container">
+    <div class="section-label">03 — side by side</div>
+    <div class="section-title">Full comparison</div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th><span class="resort-th">Zermatt</span></th>
+            <th><span class="resort-th">Val Thorens</span></th>
+            <th><span class="resort-th">St. Anton</span></th>
+            <th><span class="resort-th">Kitzbühel</span></th>
+            <th><span class="resort-th">Les Arcs</span></th>
+            <th><span class="resort-th">Verbier</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Country</td><td>🇨🇭 CH</td><td>🇫🇷 FR</td><td>🇦🇹 AT</td><td>🇦🇹 AT</td><td>🇫🇷 FR</td><td>🇨🇭 CH</td></tr>
+          <tr><td>Summit</td><td>3,883m</td><td>3,230m</td><td>2,811m</td><td>1,996m</td><td>3,226m</td><td>3,330m</td></tr>
+          <tr><td>Piste km</td><td>322km</td><td>600km</td><td>305km</td><td>188km</td><td>425km</td><td>412km</td></tr>
+          <tr><td>Snow safety</td><td class="t-green">★★★★★</td><td class="t-green">★★★★★</td><td class="t-amber">★★★☆☆</td><td class="t-amber">★★★☆☆</td><td class="t-green">★★★★☆</td><td class="t-green">★★★★☆</td></tr>
+          <tr><td>Current season</td><td class="t-green">Excellent</td><td class="t-green">Exceptional</td><td class="t-amber">Building</td><td class="t-amber">Good</td><td class="t-green">Very good</td><td class="t-green">Very good</td></tr>
+          <tr><td>Après ski</td><td>★★★★☆</td><td>★★★★☆</td><td class="t-green">★★★★★</td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★★☆</td></tr>
+          <tr><td>Value</td><td class="t-amber">★★☆☆☆</td><td>★★★☆☆</td><td class="t-green">★★★★☆</td><td>★★★☆☆</td><td class="t-green">★★★★☆</td><td class="t-warn">★☆☆☆☆</td></tr>
+          <tr><td>Icelandair flight</td>
+            <td class="t-yes">KEF→ZRH</td>
+            <td class="t-yes">KEF→ZRH</td>
+            <td class="t-yes">KEF→INN</td>
+            <td class="t-yes">KEF→SZG</td>
+            <td class="t-yes">KEF→ZRH</td>
+            <td class="t-yes">KEF→ZRH</td>
+          </tr>
+          <tr><td>Flight time</td><td>~4h 45m</td><td>~4h 45m</td><td>~4h 10m</td><td>~3h 50m</td><td>~4h 45m</td><td>~4h 45m</td></tr>
+          <tr><td>Transfer to resort</td><td>3.5h train</td><td>~4h</td><td>1.5h bus</td><td>1h bus</td><td>4.5h</td><td>2.5h bus</td></tr>
+          <tr><td>Glacier skiing</td><td class="t-yes">✓</td><td class="t-no">—</td><td class="t-no">—</td><td class="t-no">—</td><td class="t-no">—</td><td class="t-no">—</td></tr>
+          <tr><td>Ski-in/ski-out</td><td class="t-partial">Partial</td><td class="t-yes">✓ Fully</td><td class="t-partial">Partial</td><td class="t-no">—</td><td class="t-yes">✓ Fully</td><td class="t-partial">Partial</td></tr>
+          <tr><td>Iconic factor</td><td>Matterhorn</td><td>Highest in EU</td><td>Après legend</td><td class="t-green">Hahnenkamm</td><td>Paradiski</td><td>Prestige</td></tr>
+          <tr><td>Airbnb</td>
+            <td><a href="https://www.airbnb.com/s/Zermatt--Switzerland/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
+            <td><a href="https://www.airbnb.com/s/Val-Thorens--France/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
+            <td><a href="https://www.airbnb.com/s/St.-Anton-am-Arlberg--Austria/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
+            <td><a href="https://www.airbnb.com/s/Kitzbühel--Austria/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
+            <td><a href="https://www.airbnb.com/s/Les-Arcs--France/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
+            <td><a href="https://www.airbnb.com/s/Verbier--Switzerland/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FLIGHTS -->
+<section id="flights">
+  <div class="container">
+    <div class="section-label">04 — Icelandair direct only · from KEF</div>
+    <div class="section-title">Your Icelandair gateways</div>
+
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap:1rem; margin-bottom:2rem;">
+
+      <div style="background:var(--surface); border:1px solid rgba(0,113,188,0.25); border-radius:var(--radius); padding:1.5rem;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:#5aabf0; text-transform:uppercase; margin-bottom:0.8rem; display:flex; align-items:center; gap:0.5rem;">✈ KEF → ZRH <span class="fi-badge">Year-round</span></div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; margin-bottom:0.3rem;">Zürich</div>
+        <div style="font-size:0.78rem; color:var(--ice); margin-bottom:0.3rem;">Icelandair · ~4h 45min</div>
+        <div style="font-size:0.72rem; color:var(--muted); margin-bottom:1.2rem;">→ Zermatt · Verbier · Val Thorens · Les Arcs</div>
+        <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(0,113,188,0.15); border:1px solid rgba(0,113,188,0.3); border-radius:6px; color:#5aabf0; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center; margin-bottom:0.4rem;">Book · Icelandair.com</a>
+        <a href="https://www.google.com/travel/flights?q=KEF+to+ZRH+March+13+2026" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:6px; color:var(--glacier); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center;">Compare · Google Flights</a>
+      </div>
+
+      <div style="background:var(--surface); border:1px solid rgba(0,113,188,0.25); border-radius:var(--radius); padding:1.5rem;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:#5aabf0; text-transform:uppercase; margin-bottom:0.8rem; display:flex; align-items:center; gap:0.5rem;">✈ KEF → INN <span class="fi-badge">Winter</span></div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; margin-bottom:0.3rem;">Innsbruck</div>
+        <div style="font-size:0.78rem; color:var(--ice); margin-bottom:0.3rem;">Icelandair FI576 · ~4h 10min</div>
+        <div style="font-size:0.72rem; color:var(--muted); margin-bottom:1.2rem;">→ St. Anton (1.5h) · Kitzbühel (1.5h) · Söldel · Lech</div>
+        <a href="https://www.icelandair.com/flights/to-innsbruck/" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(0,113,188,0.15); border:1px solid rgba(0,113,188,0.3); border-radius:6px; color:#5aabf0; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center; margin-bottom:0.4rem;">Book · Icelandair.com</a>
+        <a href="https://www.google.com/travel/flights?q=KEF+to+INN+March+13+2026" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:6px; color:var(--glacier); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center;">Compare · Google Flights</a>
+      </div>
+
+      <div style="background:var(--surface); border:1px solid rgba(0,113,188,0.25); border-radius:var(--radius); padding:1.5rem;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:#5aabf0; text-transform:uppercase; margin-bottom:0.8rem; display:flex; align-items:center; gap:0.5rem;">✈ KEF → SZG <span class="fi-badge">Winter</span></div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; margin-bottom:0.3rem;">Salzburg</div>
+        <div style="font-size:0.78rem; color:var(--ice); margin-bottom:0.3rem;">Icelandair FI574 · ~3h 50min · Shortest flight</div>
+        <div style="font-size:0.72rem; color:var(--muted); margin-bottom:1.2rem;">→ Kitzbühel (1h) · Zell am See · Saalbach</div>
+        <a href="https://www.icelandair.com/flights/to-salzburg/" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(0,113,188,0.15); border:1px solid rgba(0,113,188,0.3); border-radius:6px; color:#5aabf0; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center; margin-bottom:0.4rem;">Book · Icelandair.com</a>
+        <a href="https://www.google.com/travel/flights?q=KEF+to+SZG+March+13+2026" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:6px; color:var(--glacier); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center;">Compare · Google Flights</a>
+      </div>
+
+      <div style="background:var(--surface); border:1px solid rgba(0,113,188,0.25); border-radius:var(--radius); padding:1.5rem;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; color:#5aabf0; text-transform:uppercase; margin-bottom:0.8rem; display:flex; align-items:center; gap:0.5rem;">✈ KEF → MUC <span class="fi-badge">Year-round</span></div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; margin-bottom:0.3rem;">Munich</div>
+        <div style="font-size:0.78rem; color:var(--ice); margin-bottom:0.3rem;">Icelandair · ~3h 30min</div>
+        <div style="font-size:0.72rem; color:var(--muted); margin-bottom:1.2rem;">→ Kitzbühel (2h train) · St. Anton (2.5h train) · Zugspitze</div>
+        <a href="https://www.icelandair.com/flights/to-munich/" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(0,113,188,0.15); border:1px solid rgba(0,113,188,0.3); border-radius:6px; color:#5aabf0; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center; margin-bottom:0.4rem;">Book · Icelandair.com</a>
+        <a href="https://www.google.com/travel/flights?q=KEF+to+MUC+March+13+2026" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:6px; color:var(--glacier); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center;">Compare · Google Flights</a>
+      </div>
+
+    </div>
+
+    <div style="background:rgba(0,113,188,0.06); border:1px solid rgba(0,113,188,0.18); border-radius:var(--radius); padding:1.2rem 1.5rem; font-size:0.78rem; color:var(--ice);">
+      <span style="font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; color:#5aabf0; text-transform:uppercase;">Icelandair ski gateways from KEF —</span>
+      Zürich (year-round), Munich (year-round), Innsbruck (FI576, weekly winter), Salzburg (FI574, weekly winter). INN and SZG are weekly flights — verify your March 13 date is operated before booking at <a href="https://www.icelandair.com" target="_blank" style="color:#5aabf0;">icelandair.com</a>.
+    </div>
+  </div>
+</section>
+
+<!-- VERDICT -->
+<section id="verdict" style="border-bottom:none;">
+  <div class="container">
+    <div class="section-label">05 — recommendations</div>
+    <div class="section-title">Which resort for you?</div>
+    <div class="verdict-grid">
+      <div class="verdict-card">
+        <div class="verdict-type">Best overall</div>
+        <div class="verdict-name">Zermatt</div>
+        <div class="verdict-text">Glacier guarantees snow. Car-free village, Matterhorn backdrop, ski to Italy. KEF → ZRH with Icelandair year-round, then 3.5h scenic train.</div>
+      </div>
+      <div class="verdict-card">
+        <div class="verdict-type">Best snow + biggest area</div>
+        <div class="verdict-name">Val Thorens</div>
+        <div class="verdict-text">Europe's highest base at 2300m, 600km pistes, exceptional conditions. Fly KEF → ZRH then transfer. No risk of poor snow in March.</div>
+      </div>
+      <div class="verdict-card">
+        <div class="verdict-type">Best après + value</div>
+        <div class="verdict-name">St. Anton</div>
+        <div class="verdict-text">Legendary après ski culture, serious off-piste terrain, most affordable. Direct Icelandair KEF → INN weekly — 1.5h to the slopes.</div>
+      </div>
+      <div class="verdict-card" style="background: rgba(212,168,83,0.05); border-color: rgba(212,168,83,0.2);">
+        <div class="verdict-type" style="color:var(--gold);">Most iconic + easiest flight</div>
+        <div class="verdict-name">Kitzbühel</div>
+        <div class="verdict-text">The Hahnenkamm, a beautiful medieval town, lively après and excellent snowmaking. Shortest Icelandair flight (KEF → SZG ~3h50m), then just 1h to the resort.</div>
+      </div>
+      <div class="verdict-card">
+        <div class="verdict-type">Best for mixed groups</div>
+        <div class="verdict-name">Les Arcs</div>
+        <div class="verdict-text">425km Paradiski terrain, fully ski-in/ski-out across all village levels, suits beginners to experts. KEF → ZRH then train to Bourg-St-Maurice.</div>
+      </div>
+      <div class="verdict-card">
+        <div class="verdict-type">Best prestige pick</div>
+        <div class="verdict-name">Verbier</div>
+        <div class="verdict-text">World-class off-piste, buzzing village, the coolest crowd in the Alps. Most expensive option by far. KEF → ZRH with Icelandair, 2.5h transfer.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>Live weather: <a href="https://open-meteo.com" target="_blank">Open-Meteo API</a> · Flights: <a href="https://www.icelandair.com" target="_blank">Icelandair.com</a> · Built for Kjartan · KEF → Alps · March 13–18, 2026</div>
+  <div style="margin-top:0.5rem; font-size:0.55rem; color: rgba(74,106,128,0.6);">Verify all flight dates and schedules directly with Icelandair before booking · Conditions change daily</div>
+</footer>
+
+<script>
+// SNOW PARTICLES
+(function() {
+  const c = document.getElementById('snowContainer');
+  for (let i = 0; i < 40; i++) {
+    const f = document.createElement('div');
+    f.className = 'flake';
+    const s = Math.random() * 3 + 1;
+    f.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*-20}px;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*10}s;`;
+    c.appendChild(f);
+  }
+})();
+
+// NAV SCROLL
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) cur = s.id; });
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+});
+
+// WEATHER DATA
+const resorts = [
+  { id: 'zermatt',     name: 'Zermatt',      lat: 46.02,   lon: 7.75,   stripName: 'Zermatt' },
+  { id: 'valthorens',  name: 'Val Thorens',  lat: 45.298,  lon: 6.582,  stripName: 'Val Thorens' },
+  { id: 'stanton',     name: 'St. Anton',    lat: 47.13,   lon: 10.27,  stripName: 'St. Anton' },
+  { id: 'kitzbuehel',  name: 'Kitzbühel',    lat: 47.448,  lon: 12.391, stripName: 'Kitzbühel' },
+  { id: 'lesarcs',     name: 'Les Arcs',     lat: 45.57,   lon: 6.83,   stripName: 'Les Arcs' },
+  { id: 'verbier',     name: 'Verbier',      lat: 46.10,   lon: 7.23,   stripName: 'Verbier' }
+];
+
+function weatherIcon(code, isDay) {
+  if (code === 0) return isDay ? '☀️' : '🌙';
+  if (code <= 2) return '⛅';
+  if (code <= 3) return '☁️';
+  if (code <= 48) return '🌫️';
+  if (code <= 57) return '🌧️';
+  if (code <= 67) return '🌨️';
+  if (code <= 77) return '❄️';
+  if (code <= 82) return '🌦️';
+  if (code <= 86) return '🌨️';
+  if (code === 95) return '⛈️';
+  return '🌨️';
+}
+
+async function fetchWeather(r) {
+  try {
+    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${r.lat}&longitude=${r.lon}&current=temperature_2m,weathercode,windspeed_10m,snowfall,is_day&windspeed_unit=kmh`);
+    const d = await res.json();
+    const c = d.current;
+    return { temp: Math.round(c.temperature_2m), wind: Math.round(c.windspeed_10m), snow: c.snowfall ? c.snowfall.toFixed(1) : '0', code: c.weathercode, isDay: c.is_day };
+  } catch { return null; }
+}
+
+function updateCard(id, w) {
+  const el = document.getElementById('weather-' + id);
+  if (!el || !w) return;
+  const items = el.querySelectorAll('.cw-item');
+  const icon = weatherIcon(w.code, w.isDay);
+  items[0].innerHTML = `<span class="cw-icon">${icon}</span><span class="cw-val">${w.temp}°C</span><span class="cw-label">Temp</span>`;
+  items[1].innerHTML = `<span class="cw-icon">${w.snow > 0 ? '❄️' : '—'}</span><span class="cw-val">${w.snow > 0 ? w.snow+'mm' : 'Dry'}</span><span class="cw-label">Snow</span>`;
+  items[2].innerHTML = `<span class="cw-icon">💨</span><span class="cw-val">${w.wind}km/h</span><span class="cw-label">Wind</span>`;
+}
+
+function updateStrip(results) {
+  document.getElementById('weatherItems').innerHTML = results.map(({resort, w}) => {
+    if (!w) return `<div class="weather-item"><span class="weather-resort-name">${resort.stripName}</span><span class="weather-desc">unavailable</span></div>`;
+    return `<div class="weather-item"><span class="weather-icon">${weatherIcon(w.code, w.isDay)}</span><span class="weather-resort-name">${resort.stripName}</span><span class="weather-temp">${w.temp}°C</span><span class="weather-desc">${w.wind}km/h</span></div>`;
+  }).join('');
+}
+
+async function fetchAllWeather() {
+  const btn = document.getElementById('refreshBtn');
+  btn.classList.add('spinning');
+  const results = [];
+  for (const r of resorts) {
+    const w = await fetchWeather(r);
+    results.push({ resort: r, w });
+    updateCard(r.id, w);
+  }
+  updateStrip(results);
+  document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString('en-GB');
+  btn.classList.remove('spinning');
+}
+
+fetchAllWeather();
+setInterval(fetchAllWeather, 600000);
+</script>
+</body>
+</html>
