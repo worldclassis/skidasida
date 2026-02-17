@@ -204,6 +204,25 @@
 
   /* ICELANDAIR ONLY NOTICE */
   .fi-only-notice { background: rgba(0,113,188,0.08); border: 1px solid rgba(0,113,188,0.2); border-radius: var(--radius); padding: 1rem 1.4rem; margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.06em; color: #5aabf0; }
+
+  /* ROUTE MAP */
+  .route-map-container { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 2rem; margin-bottom: 2rem; }
+  .route-map-container svg.route-map { display: block; width: 100%; height: auto; }
+  @keyframes dashFlow { from { stroke-dashoffset: 20; } to { stroke-dashoffset: 0; } }
+  .flight-path { stroke-dasharray: 12 8; animation: dashFlow 1.5s linear infinite; }
+  .ground-path { stroke-dasharray: 3 5; }
+  .route-group { transition: opacity 0.3s ease; }
+  .route-map:hover .route-group { opacity: 0.15; }
+  .route-map:hover .route-group:hover { opacity: 1; }
+  .route-group:hover .flight-path { stroke-width: 2.5 !important; opacity: 0.8 !important; }
+  .route-group:hover .ground-path { opacity: 0.5 !important; stroke-width: 1.5 !important; }
+  .map-airport, .map-resort { cursor: pointer; }
+  .map-tooltip { position: fixed; pointer-events: none; z-index: 200; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 0.5rem 0.8rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--ice); letter-spacing: 0.04em; opacity: 0; transition: opacity 0.15s; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+  .map-tooltip.visible { opacity: 1; }
+  @media (max-width: 680px) {
+    .route-map-container { padding: 1rem; }
+    .map-resort-label, .map-transfer-label, .map-airport-name { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -636,6 +655,171 @@
     <div class="section-label">04 — Top 4 access options · Icelandair direct from KEF</div>
     <div class="section-title">Top 4 ways to reach the ski resorts</div>
 
+    <!-- ROUTE MAP -->
+    <div class="route-map-container" style="opacity:0; transform:translateY(20px);">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; color:var(--teal); text-transform:uppercase; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+        <span class="live-dot" style="background:var(--teal); box-shadow:0 0 6px var(--teal);"></span>
+        Route Map · KEF to the Alps
+      </div>
+      <svg class="route-map" viewBox="0 0 1000 420" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="glowSm"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+
+        <!-- Subtle background labels -->
+        <text x="100" y="30" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="14" fill="rgba(180,207,224,0.08)" font-weight="600" letter-spacing="0.3em">ICELAND</text>
+        <text x="680" y="30" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="14" fill="rgba(180,207,224,0.08)" font-weight="600" letter-spacing="0.3em">THE ALPS</text>
+
+        <!-- ROUTE GROUP: ZRH (serves Zermatt, Verbier, Val Thorens, Les Arcs) -->
+        <g class="route-group" data-airport="ZRH">
+          <!-- Flight path KEF → ZRH -->
+          <path d="M120,120 Q380,10 620,255" stroke="transparent" stroke-width="18" fill="none" class="flight-hover-target"/>
+          <path class="flight-path" d="M120,120 Q380,10 620,255" stroke="#5fc4c0" stroke-width="1.5" fill="none" opacity="0.45"/>
+          <!-- Ground: ZRH → Zermatt -->
+          <line class="ground-path" x1="620" y1="255" x2="600" y2="320" stroke="#4a6a80" stroke-width="1" opacity="0.3"/>
+          <text class="map-transfer-label" x="598" y="292" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" text-anchor="end">3.5h</text>
+          <!-- Ground: ZRH → Verbier -->
+          <line class="ground-path" x1="620" y1="255" x2="580" y2="310" stroke="#4a6a80" stroke-width="1" opacity="0.3"/>
+          <text class="map-transfer-label" x="588" y="286" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" text-anchor="end">2.5h</text>
+          <!-- Ground: ZRH → Val Thorens -->
+          <line class="ground-path" x1="620" y1="255" x2="545" y2="345" stroke="#4a6a80" stroke-width="1" opacity="0.25"/>
+          <text class="map-transfer-label" x="570" y="308" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" text-anchor="end">4h</text>
+          <!-- Ground: ZRH → Les Arcs -->
+          <line class="ground-path" x1="620" y1="255" x2="560" y2="335" stroke="#4a6a80" stroke-width="1" opacity="0.25"/>
+          <text class="map-transfer-label" x="578" y="302" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" text-anchor="start">4.5h</text>
+          <!-- Resort dots: Zermatt -->
+          <g class="map-resort" data-resort="zermatt">
+            <rect x="597" y="317" width="6" height="6" rx="1" fill="#d4a853" transform="rotate(45 600 320)"/>
+            <text class="map-resort-label" x="600" y="338" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#b4cfe0">Zermatt</text>
+          </g>
+          <!-- Resort dots: Verbier -->
+          <g class="map-resort" data-resort="verbier">
+            <rect x="577" y="307" width="6" height="6" rx="1" fill="#d4a853" transform="rotate(45 580 310)"/>
+            <text class="map-resort-label" x="565" y="318" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="8" fill="#b4cfe0">Verbier</text>
+          </g>
+          <!-- Resort dots: Val Thorens -->
+          <g class="map-resort" data-resort="valthorens">
+            <rect x="542" y="342" width="6" height="6" rx="1" fill="#d4a853" transform="rotate(45 545 345)"/>
+            <text class="map-resort-label" x="530" y="353" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="8" fill="#b4cfe0">Val Thorens</text>
+          </g>
+          <!-- Resort dots: Les Arcs -->
+          <g class="map-resort" data-resort="lesarcs">
+            <rect x="557" y="332" width="6" height="6" rx="1" fill="#d4a853" transform="rotate(45 560 335)"/>
+            <text class="map-resort-label" x="545" y="343" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="8" fill="#b4cfe0">Les Arcs</text>
+          </g>
+          <!-- Airport dot: ZRH -->
+          <g class="map-airport" data-airport="ZRH" filter="url(#glow)">
+            <circle cx="620" cy="255" r="6" fill="#5fc4c0"/>
+            <text x="620" y="244" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#e8eef4" font-weight="500">ZRH</text>
+            <text class="map-airport-name" x="620" y="273" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#4a6a80">Zürich</text>
+          </g>
+        </g>
+
+        <!-- ROUTE GROUP: MUC (serves Kitzbühel, St. Anton) -->
+        <g class="route-group" data-airport="MUC">
+          <!-- Flight path KEF → MUC -->
+          <path d="M120,120 Q420,25 750,215" stroke="transparent" stroke-width="18" fill="none" class="flight-hover-target"/>
+          <path class="flight-path" d="M120,120 Q420,25 750,215" stroke="#5fc4c0" stroke-width="1.5" fill="none" opacity="0.45"/>
+          <!-- Ground: MUC → Kitzbühel -->
+          <line class="ground-path" x1="750" y1="215" x2="770" y2="270" stroke="#4a6a80" stroke-width="1" opacity="0.3"/>
+          <text class="map-transfer-label" x="768" y="248" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" text-anchor="start">2h</text>
+          <!-- Ground: MUC → St. Anton -->
+          <line class="ground-path" x1="750" y1="215" x2="695" y2="275" stroke="#4a6a80" stroke-width="1" opacity="0.3"/>
+          <text class="map-transfer-label" x="714" y="250" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" text-anchor="end">2.5h</text>
+          <!-- Airport dot: MUC -->
+          <g class="map-airport" data-airport="MUC" filter="url(#glow)">
+            <circle cx="750" cy="215" r="6" fill="#5fc4c0"/>
+            <text x="750" y="204" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#e8eef4" font-weight="500">MUC</text>
+            <text class="map-airport-name" x="750" y="233" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#4a6a80">Munich</text>
+          </g>
+        </g>
+
+        <!-- ROUTE GROUP: INN (serves St. Anton, Kitzbühel) -->
+        <g class="route-group" data-airport="INN">
+          <!-- Flight path KEF → INN -->
+          <path d="M120,120 Q400,35 710,250" stroke="transparent" stroke-width="18" fill="none" class="flight-hover-target"/>
+          <path class="flight-path" d="M120,120 Q400,35 710,250" stroke="#5fc4c0" stroke-width="1.5" fill="none" opacity="0.45"/>
+          <!-- Ground: INN → St. Anton -->
+          <line class="ground-path" x1="710" y1="250" x2="695" y2="275" stroke="#4a6a80" stroke-width="1" opacity="0.3"/>
+          <text class="map-transfer-label" x="693" y="266" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" text-anchor="end">1.5h</text>
+          <!-- Ground: INN → Kitzbühel -->
+          <line class="ground-path" x1="710" y1="250" x2="770" y2="270" stroke="#4a6a80" stroke-width="1" opacity="0.25"/>
+          <text class="map-transfer-label" x="748" y="264" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" text-anchor="start">1.5h</text>
+          <!-- Resort dots: St. Anton -->
+          <g class="map-resort" data-resort="stanton">
+            <rect x="692" y="272" width="6" height="6" rx="1" fill="#d4a853" transform="rotate(45 695 275)"/>
+            <text class="map-resort-label" x="680" y="284" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="8" fill="#b4cfe0">St. Anton</text>
+          </g>
+          <!-- Airport dot: INN -->
+          <g class="map-airport" data-airport="INN" filter="url(#glow)">
+            <circle cx="710" cy="250" r="6" fill="#5fc4c0"/>
+            <text x="710" y="239" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#e8eef4" font-weight="500">INN</text>
+            <text class="map-airport-name" x="710" y="268" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#4a6a80">Innsbruck</text>
+          </g>
+        </g>
+
+        <!-- ROUTE GROUP: SZG (serves Kitzbühel) -->
+        <g class="route-group" data-airport="SZG">
+          <!-- Flight path KEF → SZG -->
+          <path d="M120,120 Q440,15 800,230" stroke="transparent" stroke-width="18" fill="none" class="flight-hover-target"/>
+          <path class="flight-path" d="M120,120 Q440,15 800,230" stroke="#5fc4c0" stroke-width="1.5" fill="none" opacity="0.45"/>
+          <!-- Ground: SZG → Kitzbühel -->
+          <line class="ground-path" x1="800" y1="230" x2="770" y2="270" stroke="#4a6a80" stroke-width="1" opacity="0.3"/>
+          <text class="map-transfer-label" x="792" y="256" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" text-anchor="start">1h</text>
+          <!-- Resort dots: Kitzbühel -->
+          <g class="map-resort" data-resort="kitzbuehel">
+            <rect x="767" y="267" width="6" height="6" rx="1" fill="#d4a853" transform="rotate(45 770 270)"/>
+            <text class="map-resort-label" x="770" y="290" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#b4cfe0">Kitzbühel</text>
+          </g>
+          <!-- Airport dot: SZG -->
+          <g class="map-airport" data-airport="SZG" filter="url(#glow)">
+            <circle cx="800" cy="230" r="6" fill="#5fc4c0"/>
+            <text x="800" y="219" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#e8eef4" font-weight="500">SZG</text>
+            <text class="map-airport-name" x="800" y="248" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#4a6a80">Salzburg</text>
+          </g>
+        </g>
+
+        <!-- KEF ORIGIN (on top of everything) -->
+        <g class="map-airport kef-origin">
+          <circle cx="120" cy="120" r="14" fill="#5fc4c0" opacity="0.08">
+            <animate attributeName="r" values="14;22;14" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.08;0.02;0.08" dur="3s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="120" cy="120" r="8" fill="#5fc4c0" filter="url(#glow)"/>
+          <text x="120" y="106" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" fill="#e8eef4" font-weight="500">KEF</text>
+          <text x="120" y="145" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#4a6a80">Keflavík</text>
+          <text x="120" y="158" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" letter-spacing="0.2em">ICELAND</text>
+        </g>
+
+        <!-- Flight time labels along arcs -->
+        <text x="370" y="125" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#5fc4c0" opacity="0.6">FI568 · 3h 45m</text>
+        <text x="420" y="105" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#5fc4c0" opacity="0.6">FI532 · 3h 45m</text>
+        <text x="395" y="145" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#5fc4c0" opacity="0.6">FI576 · 4h 10m</text>
+        <text x="450" y="85" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#5fc4c0" opacity="0.6">FI574 · 3h 50m</text>
+      </svg>
+
+      <!-- Legend -->
+      <div style="display:flex; gap:1.5rem; margin-top:0.8rem; font-family:'JetBrains Mono',monospace; font-size:0.55rem; color:var(--muted); letter-spacing:0.06em; flex-wrap:wrap;">
+        <span style="display:flex; align-items:center; gap:0.4rem;">
+          <svg width="24" height="2"><line x1="0" y1="1" x2="24" y2="1" stroke="#5fc4c0" stroke-width="1.5" stroke-dasharray="4 3"/></svg>
+          Icelandair flight
+        </span>
+        <span style="display:flex; align-items:center; gap:0.4rem;">
+          <svg width="24" height="2"><line x1="0" y1="1" x2="24" y2="1" stroke="#4a6a80" stroke-width="1" stroke-dasharray="2 3"/></svg>
+          Ground transfer
+        </span>
+        <span style="display:flex; align-items:center; gap:0.4rem;">
+          <svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="#5fc4c0"/></svg>
+          Airport
+        </span>
+        <span style="display:flex; align-items:center; gap:0.4rem;">
+          <svg width="8" height="8"><rect x="1" y="1" width="5" height="5" rx="1" fill="#d4a853" transform="rotate(45 3.5 3.5)"/></svg>
+          Ski resort
+        </span>
+      </div>
+    </div>
+
     <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap:1rem; margin-bottom:2rem;">
 
       <!-- #1 SALZBURG — Shortest flight, closest to resort -->
@@ -844,6 +1028,71 @@ async function fetchAllWeather() {
 
 fetchAllWeather();
 setInterval(fetchAllWeather, 600000);
+
+// ROUTE MAP INTERACTIVITY
+(function() {
+  const mapContainer = document.querySelector('.route-map-container');
+  if (!mapContainer) return;
+
+  // Entrance animation via IntersectionObserver
+  const mapObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.transition = 'opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1)';
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        mapObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  mapObs.observe(mapContainer);
+
+  // Click-to-scroll: resort dots → resort cards
+  const resortOrder = { zermatt: 0, valthorens: 1, stanton: 2, kitzbuehel: 3, lesarcs: 4, verbier: 5 };
+  document.querySelectorAll('.map-resort').forEach(el => {
+    el.addEventListener('click', () => {
+      const idx = resortOrder[el.dataset.resort];
+      const cards = document.querySelectorAll('.resort-card');
+      if (cards[idx]) cards[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+
+  // Click-to-scroll: airport dots → gateway cards
+  const airportOrder = { SZG: 0, MUC: 1, INN: 2, ZRH: 3 };
+  document.querySelectorAll('.map-airport[data-airport]').forEach(el => {
+    el.addEventListener('click', () => {
+      const idx = airportOrder[el.dataset.airport];
+      const cards = document.querySelectorAll('#flights .container > div:nth-child(3) > div');
+      if (cards[idx]) cards[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+
+  // Tooltip on flight paths
+  const tooltip = document.createElement('div');
+  tooltip.className = 'map-tooltip';
+  document.body.appendChild(tooltip);
+
+  const flightInfo = {
+    ZRH: 'KEF → ZRH · FI568 · 3h 45m · Dep 07:20 · Year-round',
+    MUC: 'KEF → MUC · FI532 · 3h 45m · Dep 07:20 · Daily',
+    INN: 'KEF → INN · FI576 · 4h 10m · Dep 09:55 · Sat winter',
+    SZG: 'KEF → SZG · FI574 · 3h 50m · Dep 08:00 · Sat winter'
+  };
+
+  document.querySelectorAll('.flight-path, .flight-hover-target').forEach(path => {
+    const airport = path.closest('.route-group')?.dataset.airport;
+    if (!airport || !flightInfo[airport]) return;
+    path.addEventListener('mouseenter', () => {
+      tooltip.textContent = flightInfo[airport];
+      tooltip.classList.add('visible');
+    });
+    path.addEventListener('mousemove', (e) => {
+      tooltip.style.left = (e.clientX + 14) + 'px';
+      tooltip.style.top = (e.clientY - 24) + 'px';
+    });
+    path.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+  });
+})();
 </script>
 </body>
 </html>
