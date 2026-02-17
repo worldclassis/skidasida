@@ -153,8 +153,6 @@
   .no-direct { background: rgba(208,85,85,0.06); border: 1px solid rgba(208,85,85,0.15); border-radius: 7px; padding: 0.65rem 0.85rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(208,85,85,0.8); letter-spacing: 0.04em; }
   .transfer-row { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--ice); margin-top: 0.4rem; }
   .transfer-row span { color: var(--muted); font-size: 0.7rem; }
-  .book-flight-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 0.7rem; margin-top: 0.5rem; border-radius: 7px; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(95,196,192,0.1); border: 1px solid rgba(95,196,192,0.25); color: var(--teal); transition: all 0.2s; }
-  .book-flight-btn:hover { background: rgba(95,196,192,0.18); }
 
   /* BOOKING GRID */
   .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem; }
@@ -166,7 +164,7 @@
 
   /* TABLE */
   .table-wrapper { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
-  table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 900px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 1600px; }
   thead th { padding: 1rem 1.2rem; text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); background: var(--surface); white-space: nowrap; }
   thead th:first-child { color: var(--glacier); }
   tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
@@ -275,7 +273,7 @@
     <span class="pill accent">✈ 13 March 2026</span>
     <span class="pill accent">⛷ 5 nights</span>
     <span class="pill accent">↩ 18 March 2026</span>
-    <span class="pill">6 resorts compared</span>
+    <span class="pill">11 resorts compared</span>
     <span class="pill">Live weather</span>
     <span class="pill">Icelandair only</span>
   </div>
@@ -313,7 +311,7 @@
 <section id="resorts">
   <div class="container">
     <div class="section-label">02 — full profiles</div>
-    <div class="section-title">Six resorts, all Icelandair direct</div>
+    <div class="section-title">Eleven resorts, all Icelandair direct</div>
 
     <div class="fi-only-notice">
       ✈ All resorts below are reachable on direct Icelandair flights from KEF · ZRH · INN · SZG · MUC · no connections needed
@@ -337,8 +335,8 @@
             <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
             <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
           </div>
-          <div class="snow-row"><span class="snow-label-text">Pistes open</span><div class="snow-track"><div class="snow-fill" style="width:87%"></div></div><span class="snow-num">279/322km</span></div>
-          <div class="snow-row"><span class="snow-label-text">Snow depth</span><div class="snow-track"><div class="snow-fill" style="width:92%"></div></div><span class="snow-num">200+ cm</span></div>
+          <div class="snow-row"><span class="snow-label-text">Snow base</span><div class="snow-track"><div class="snow-fill" style="width:92%"></div></div><span class="snow-num">200+ cm</span></div>
+          <div class="snow-row"><span class="snow-label-text">Total pistes</span><div class="snow-track"><div class="snow-fill" style="width:87%"></div></div><span class="snow-num">322km</span></div>
           <div class="stats-grid">
             <div class="stat"><span class="stat-val">3,883m</span><span class="stat-label">Summit</span></div>
             <div class="stat"><span class="stat-val">322km</span><span class="stat-label">Pistes</span></div>
@@ -383,7 +381,6 @@
             </div>
           </div>
 
-          <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
           <div class="booking-grid">
             <a href="https://www.airbnb.com/s/Zermatt--Switzerland/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
             <a href="https://www.booking.com/searchresults.html?ss=Zermatt&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
@@ -455,7 +452,6 @@
             </div>
           </div>
 
-          <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
           <div class="booking-grid">
             <a href="https://www.airbnb.com/s/Val-Thorens--France/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
             <a href="https://www.booking.com/searchresults.html?ss=Val+Thorens&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
@@ -481,8 +477,8 @@
             <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
             <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
           </div>
-          <div class="snow-row"><span class="snow-label-text">Conditions</span><div class="snow-track"><div class="snow-fill" style="width:70%"></div></div><span class="snow-num">Improving</span></div>
-          <div class="snow-row"><span class="snow-label-text">Arlberg km</span><div class="snow-track"><div class="snow-fill" style="width:78%"></div></div><span class="snow-num">305km</span></div>
+          <div class="snow-row"><span class="snow-label-text">Snow base</span><div class="snow-track"><div class="snow-fill" style="width:70%"></div></div><span class="snow-num">80–120cm</span></div>
+          <div class="snow-row"><span class="snow-label-text">Total pistes</span><div class="snow-track"><div class="snow-fill" style="width:78%"></div></div><span class="snow-num">305km</span></div>
           <div class="stats-grid">
             <div class="stat"><span class="stat-val">2,811m</span><span class="stat-label">Summit</span></div>
             <div class="stat"><span class="stat-val">305km</span><span class="stat-label">Pistes</span></div>
@@ -549,7 +545,6 @@
             </div>
           </div>
 
-          <a href="https://www.icelandair.com/flights/to-innsbruck/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → INN</a>
           <div class="booking-grid">
             <a href="https://www.airbnb.com/s/St.-Anton-am-Arlberg--Austria/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
             <a href="https://www.booking.com/searchresults.html?ss=St+Anton+am+Arlberg&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
@@ -576,7 +571,7 @@
             <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
           </div>
           <div class="snow-row"><span class="snow-label-text">Snow base</span><div class="snow-track"><div class="snow-fill" style="width:68%"></div></div><span class="snow-num">65–85cm</span></div>
-          <div class="snow-row"><span class="snow-label-text">Lifts open</span><div class="snow-track"><div class="snow-fill" style="width:93%"></div></div><span class="snow-num">54/58</span></div>
+          <div class="snow-row"><span class="snow-label-text">Total pistes</span><div class="snow-track"><div class="snow-fill" style="width:52%"></div></div><span class="snow-num">188km</span></div>
           <div class="stats-grid">
             <div class="stat"><span class="stat-val">1,996m</span><span class="stat-label">Summit</span></div>
             <div class="stat"><span class="stat-val">188km</span><span class="stat-label">Pistes</span></div>
@@ -664,7 +659,6 @@
             </div>
           </div>
 
-          <a href="https://www.icelandair.com/flights/to-salzburg/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → SZG</a>
           <div class="booking-grid">
             <a href="https://www.airbnb.com/s/Kitzbühel--Austria/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
             <a href="https://www.booking.com/searchresults.html?ss=Kitzbühel&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
@@ -690,8 +684,8 @@
             <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
             <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
           </div>
-          <div class="snow-row"><span class="snow-label-text">Conditions</span><div class="snow-track"><div class="snow-fill" style="width:82%"></div></div><span class="snow-num">Very good</span></div>
-          <div class="snow-row"><span class="snow-label-text">Paradiski km</span><div class="snow-track"><div class="snow-fill" style="width:88%"></div></div><span class="snow-num">425km</span></div>
+          <div class="snow-row"><span class="snow-label-text">Snow base</span><div class="snow-track"><div class="snow-fill" style="width:82%"></div></div><span class="snow-num">120–200cm</span></div>
+          <div class="snow-row"><span class="snow-label-text">Total pistes</span><div class="snow-track"><div class="snow-fill" style="width:88%"></div></div><span class="snow-num">425km</span></div>
           <div class="stats-grid">
             <div class="stat"><span class="stat-val">3,226m</span><span class="stat-label">Summit</span></div>
             <div class="stat"><span class="stat-val">425km</span><span class="stat-label">Pistes</span></div>
@@ -741,7 +735,6 @@
             </div>
           </div>
 
-          <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
           <div class="booking-grid">
             <a href="https://www.airbnb.com/s/Les-Arcs--France/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
             <a href="https://www.booking.com/searchresults.html?ss=Les+Arcs&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
@@ -767,8 +760,8 @@
             <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
             <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
           </div>
-          <div class="snow-row"><span class="snow-label-text">Lifts open</span><div class="snow-track"><div class="snow-fill" style="width:85%"></div></div><span class="snow-num">All open</span></div>
-          <div class="snow-row"><span class="snow-label-text">4 Vallées km</span><div class="snow-track"><div class="snow-fill" style="width:85%"></div></div><span class="snow-num">412km</span></div>
+          <div class="snow-row"><span class="snow-label-text">Snow base</span><div class="snow-track"><div class="snow-fill" style="width:85%"></div></div><span class="snow-num">100–180cm</span></div>
+          <div class="snow-row"><span class="snow-label-text">Total pistes</span><div class="snow-track"><div class="snow-fill" style="width:85%"></div></div><span class="snow-num">412km</span></div>
           <div class="stats-grid">
             <div class="stat"><span class="stat-val">3,330m</span><span class="stat-label">Summit</span></div>
             <div class="stat"><span class="stat-val">412km</span><span class="stat-label">Pistes</span></div>
@@ -814,12 +807,402 @@
             </div>
           </div>
 
-          <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" class="book-flight-btn">✈ Book with Icelandair · KEF → ZRH</a>
           <div class="booking-grid">
             <a href="https://www.airbnb.com/s/Verbier--Switzerland/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
             <a href="https://www.booking.com/searchresults.html?ss=Verbier&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
             <a href="https://www.snow-forecast.com/resorts/Verbier/snow-report" target="_blank" class="booking-btn"><span class="btn-icon">🌨</span> Snow report</a>
             <a href="https://www.skiresort.info/ski-resort/verbier/" target="_blank" class="booking-btn"><span class="btn-icon">⛷</span> Ski info</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ISCHGL -->
+      <div class="resort-card good">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-head">
+            <div>
+              <div class="resort-name">Ischgl</div>
+              <div class="resort-meta">🇦🇹 Austria · 1430m</div>
+            </div>
+            <span class="badge badge-teal">Party capital</span>
+          </div>
+          <div class="card-weather" id="weather-ischgl">
+            <div class="cw-item"><span class="cw-icon">⏳</span><span class="cw-val loading">—</span><span class="cw-label">Temp</span></div>
+            <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
+            <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
+          </div>
+          <div class="snow-row"><span class="snow-label-text">Snow base</span><div class="snow-track"><div class="snow-fill" style="width:80%"></div></div><span class="snow-num">100–180cm</span></div>
+          <div class="snow-row"><span class="snow-label-text">Total pistes</span><div class="snow-track"><div class="snow-fill" style="width:65%"></div></div><span class="snow-num">239km</span></div>
+          <div class="stats-grid">
+            <div class="stat"><span class="stat-val">2,784m</span><span class="stat-label">Summit</span></div>
+            <div class="stat"><span class="stat-val">239km</span><span class="stat-label">Pistes</span></div>
+            <div class="stat"><span class="stat-val">4★</span><span class="stat-label">Snow safety</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Silvretta Arena</span><span class="tag">Cross-border Samnaun</span><span class="tag">Legendary après</span><span class="tag">High altitude</span>
+          </div>
+          <div class="ratings">
+            <div class="rating-row"><span class="r-label">Après ski</span><div class="r-bar"><div class="r-fill" style="width:100%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Terrain</span><div class="r-bar"><div class="r-fill" style="width:90%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:60%"></div></div></div>
+          </div>
+          <div class="card-divider"></div>
+          <div class="access-section-title">How to get there</div>
+
+          <div class="access-option best">
+            <div class="access-option-label">Best option · shortest transfer</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">INN</span>
+              <span class="city-name">Innsbruck</span>
+              <span class="fi-badge">FI576</span>
+            </div>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI576 · ~4h 10min</div>
+              <div class="access-schedule-times">Dep <strong>09:55</strong> GMT → Arr <strong>15:05</strong> CET</div>
+              <div class="access-schedule-freq">Saturdays · Winter season only</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚌</span>
+              <span class="access-xfer-route">Innsbruck → Ischgl</span>
+              <span class="access-xfer-mode">Bus</span>
+              <span class="access-xfer-time">~1h15</span>
+              <span class="access-xfer-tag fastest">Fastest</span>
+            </div>
+          </div>
+
+          <div class="access-option">
+            <div class="access-option-label">Alternative · daily flights</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">MUC</span>
+              <span class="city-name">Munich</span>
+              <span class="fi-badge">FI532</span>
+            </div>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI532 · ~3h 45min</div>
+              <div class="access-schedule-times">Dep <strong>07:20</strong> GMT → Arr <strong>12:05</strong> CET</div>
+              <div class="access-schedule-freq">Daily · Year-round</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚂</span>
+              <span class="access-xfer-route">Munich → Ischgl</span>
+              <span class="access-xfer-mode">Train + Bus</span>
+              <span class="access-xfer-time">~3h20</span>
+              <span class="access-xfer-tag daily">Daily</span>
+            </div>
+          </div>
+
+          <div class="booking-grid">
+            <a href="https://www.airbnb.com/s/Ischgl--Austria/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
+            <a href="https://www.booking.com/searchresults.html?ss=Ischgl&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
+            <a href="https://www.ischgl.com/en/winter/snow-report" target="_blank" class="booking-btn"><span class="btn-icon">🌨</span> Snow report</a>
+            <a href="https://www.ischgl.com/en" target="_blank" class="booking-btn"><span class="btn-icon">⛷</span> Resort site</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SÖLDEN -->
+      <div class="resort-card good">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-head">
+            <div>
+              <div class="resort-name">Sölden</div>
+              <div class="resort-meta">🇦🇹 Austria · 1350m</div>
+            </div>
+            <span class="badge badge-teal">Glacier</span>
+          </div>
+          <div class="card-weather" id="weather-soelden">
+            <div class="cw-item"><span class="cw-icon">⏳</span><span class="cw-val loading">—</span><span class="cw-label">Temp</span></div>
+            <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
+            <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
+          </div>
+          <div class="snow-row"><span class="snow-label-text">Snow base</span><div class="snow-track"><div class="snow-fill" style="width:85%"></div></div><span class="snow-num">120–220cm</span></div>
+          <div class="snow-row"><span class="snow-label-text">Total pistes</span><div class="snow-track"><div class="snow-fill" style="width:45%"></div></div><span class="snow-num">146km</span></div>
+          <div class="stats-grid">
+            <div class="stat"><span class="stat-val">3,340m</span><span class="stat-label">Summit</span></div>
+            <div class="stat"><span class="stat-val">146km</span><span class="stat-label">Pistes</span></div>
+            <div class="stat"><span class="stat-val">5★</span><span class="stat-label">Snow safety</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Twin glaciers</span><span class="tag">World Cup venue</span><span class="tag">Year-round skiing</span><span class="tag">Ötztal</span>
+          </div>
+          <div class="ratings">
+            <div class="rating-row"><span class="r-label">Après ski</span><div class="r-bar"><div class="r-fill" style="width:80%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Terrain</span><div class="r-bar"><div class="r-fill" style="width:80%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:60%"></div></div></div>
+          </div>
+          <div class="card-divider"></div>
+          <div class="access-section-title">How to get there</div>
+
+          <div class="access-option best">
+            <div class="access-option-label">Best option · shortest transfer</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">INN</span>
+              <span class="city-name">Innsbruck</span>
+              <span class="fi-badge">FI576</span>
+            </div>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI576 · ~4h 10min</div>
+              <div class="access-schedule-times">Dep <strong>09:55</strong> GMT → Arr <strong>15:05</strong> CET</div>
+              <div class="access-schedule-freq">Saturdays · Winter season only</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚌</span>
+              <span class="access-xfer-route">Innsbruck → Sölden</span>
+              <span class="access-xfer-mode">Bus</span>
+              <span class="access-xfer-time">~1.5h</span>
+              <span class="access-xfer-tag fastest">Fastest</span>
+            </div>
+          </div>
+
+          <div class="access-option">
+            <div class="access-option-label">Alternative · daily flights</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">MUC</span>
+              <span class="city-name">Munich</span>
+              <span class="fi-badge">FI532</span>
+            </div>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI532 · ~3h 45min</div>
+              <div class="access-schedule-times">Dep <strong>07:20</strong> GMT → Arr <strong>12:05</strong> CET</div>
+              <div class="access-schedule-freq">Daily · Year-round</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚂</span>
+              <span class="access-xfer-route">Munich → Sölden</span>
+              <span class="access-xfer-mode">Train + Bus</span>
+              <span class="access-xfer-time">~3h15</span>
+              <span class="access-xfer-tag daily">Daily</span>
+            </div>
+          </div>
+
+          <div class="booking-grid">
+            <a href="https://www.airbnb.com/s/Sölden--Austria/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
+            <a href="https://www.booking.com/searchresults.html?ss=Sölden&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
+            <a href="https://www.soelden.com/en/winter/snow-report" target="_blank" class="booking-btn"><span class="btn-icon">🌨</span> Snow report</a>
+            <a href="https://www.soelden.com/en" target="_blank" class="booking-btn"><span class="btn-icon">⛷</span> Resort site</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LECH-ZÜRS -->
+      <div class="resort-card featured">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-head">
+            <div>
+              <div class="resort-name">Lech-Zürs</div>
+              <div class="resort-meta">🇦🇹 Austria · 1300m</div>
+            </div>
+            <span class="badge badge-gold">Snowiest</span>
+          </div>
+          <div class="card-weather" id="weather-lechzuers">
+            <div class="cw-item"><span class="cw-icon">⏳</span><span class="cw-val loading">—</span><span class="cw-label">Temp</span></div>
+            <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
+            <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
+          </div>
+          <div class="snow-row"><span class="snow-label-text">Snow base</span><div class="snow-track"><div class="snow-fill" style="width:90%"></div></div><span class="snow-num">150–280cm</span></div>
+          <div class="snow-row"><span class="snow-label-text">Total pistes</span><div class="snow-track"><div class="snow-fill" style="width:78%"></div></div><span class="snow-num">305km</span></div>
+          <div class="stats-grid">
+            <div class="stat"><span class="stat-val">2,809m</span><span class="stat-label">Summit</span></div>
+            <div class="stat"><span class="stat-val">305km</span><span class="stat-label">Pistes</span></div>
+            <div class="stat"><span class="stat-val">5★</span><span class="stat-label">Snow safety</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Ski Arlberg</span><span class="tag">Snowiest in Alps</span><span class="tag">Royal favourite</span><span class="tag">Powder paradise</span>
+          </div>
+          <div class="ratings">
+            <div class="rating-row"><span class="r-label">Après ski</span><div class="r-bar"><div class="r-fill" style="width:70%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Terrain</span><div class="r-bar"><div class="r-fill" style="width:90%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:40%"></div></div></div>
+          </div>
+          <div class="card-divider"></div>
+          <div class="access-section-title">How to get there</div>
+
+          <div class="access-option best">
+            <div class="access-option-label">Best option · shortest transfer</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">INN</span>
+              <span class="city-name">Innsbruck</span>
+              <span class="fi-badge">FI576</span>
+            </div>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI576 · ~4h 10min</div>
+              <div class="access-schedule-times">Dep <strong>09:55</strong> GMT → Arr <strong>15:05</strong> CET</div>
+              <div class="access-schedule-freq">Saturdays · Winter season only</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚌</span>
+              <span class="access-xfer-route">Innsbruck → Lech</span>
+              <span class="access-xfer-mode">Bus</span>
+              <span class="access-xfer-time">~1h35</span>
+              <span class="access-xfer-tag fastest">Fastest</span>
+            </div>
+          </div>
+
+          <div class="access-option">
+            <div class="access-option-label">Alternative · year-round flights</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span>
+              <span class="city-name">Zürich</span>
+              <span class="fi-badge">FI568</span>
+            </div>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI568 · ~3h 45min</div>
+              <div class="access-schedule-times">Dep <strong>07:20</strong> GMT → Arr <strong>12:05</strong> CET</div>
+              <div class="access-schedule-freq">Year-round · Multiple days/week</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚂</span>
+              <span class="access-xfer-route">Zürich → Langen → Lech</span>
+              <span class="access-xfer-mode">Train + Bus</span>
+              <span class="access-xfer-time">~2.5h</span>
+              <span class="access-xfer-tag scenic">Scenic</span>
+            </div>
+          </div>
+
+          <div class="booking-grid">
+            <a href="https://www.airbnb.com/s/Lech--Austria/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
+            <a href="https://www.booking.com/searchresults.html?ss=Lech+am+Arlberg&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
+            <a href="https://www.lechzuers.com/en/snow-report" target="_blank" class="booking-btn"><span class="btn-icon">🌨</span> Snow report</a>
+            <a href="https://www.skiarlberg.at/en" target="_blank" class="booking-btn"><span class="btn-icon">⛷</span> Ski Arlberg</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENGELBERG-TITLIS -->
+      <div class="resort-card">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-head">
+            <div>
+              <div class="resort-name">Engelberg-Titlis</div>
+              <div class="resort-meta">🇨🇭 Switzerland · 1000m</div>
+            </div>
+            <span class="badge badge-teal">Quick access</span>
+          </div>
+          <div class="card-weather" id="weather-engelberg">
+            <div class="cw-item"><span class="cw-icon">⏳</span><span class="cw-val loading">—</span><span class="cw-label">Temp</span></div>
+            <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
+            <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
+          </div>
+          <div class="snow-row"><span class="snow-label-text">Snow base</span><div class="snow-track"><div class="snow-fill" style="width:75%"></div></div><span class="snow-num">80–200cm</span></div>
+          <div class="snow-row"><span class="snow-label-text">Total pistes</span><div class="snow-track"><div class="snow-fill" style="width:25%"></div></div><span class="snow-num">82km</span></div>
+          <div class="stats-grid">
+            <div class="stat"><span class="stat-val">3,020m</span><span class="stat-label">Summit</span></div>
+            <div class="stat"><span class="stat-val">82km</span><span class="stat-label">Pistes</span></div>
+            <div class="stat"><span class="stat-val">4.5★</span><span class="stat-label">Snow safety</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Titlis glacier</span><span class="tag">Longest Swiss descent</span><span class="tag">Monastery village</span><span class="tag">Same-day skiing</span>
+          </div>
+          <div class="ratings">
+            <div class="rating-row"><span class="r-label">Après ski</span><div class="r-bar"><div class="r-fill" style="width:50%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Terrain</span><div class="r-bar"><div class="r-fill" style="width:70%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:60%"></div></div></div>
+          </div>
+          <div class="card-divider"></div>
+          <div class="access-section-title">How to get there</div>
+
+          <div class="access-option best">
+            <div class="access-option-label">Best option · direct train</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span>
+              <span class="city-name">Zürich</span>
+              <span class="fi-badge">FI568</span>
+            </div>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI568 · ~3h 45min</div>
+              <div class="access-schedule-times">Dep <strong>07:20</strong> GMT → Arr <strong>12:05</strong> CET</div>
+              <div class="access-schedule-freq">Year-round · Multiple days/week</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚂</span>
+              <span class="access-xfer-route">Zürich → Engelberg</span>
+              <span class="access-xfer-mode">Train</span>
+              <span class="access-xfer-time">~1.5h</span>
+              <span class="access-xfer-tag fastest">Fastest</span>
+            </div>
+          </div>
+
+          <div class="booking-grid">
+            <a href="https://www.airbnb.com/s/Engelberg--Switzerland/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
+            <a href="https://www.booking.com/searchresults.html?ss=Engelberg&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
+            <a href="https://www.engelberg.ch/en/winter/snow-report/" target="_blank" class="booking-btn"><span class="btn-icon">🌨</span> Snow report</a>
+            <a href="https://www.sbb.ch/en" target="_blank" class="booking-btn"><span class="btn-icon">🚂</span> Swiss Rail</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LAAX -->
+      <div class="resort-card">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <div class="card-head">
+            <div>
+              <div class="resort-name">Laax</div>
+              <div class="resort-meta">🇨🇭 Switzerland · 1100m</div>
+            </div>
+            <span class="badge badge-teal">Best value CH</span>
+          </div>
+          <div class="card-weather" id="weather-laax">
+            <div class="cw-item"><span class="cw-icon">⏳</span><span class="cw-val loading">—</span><span class="cw-label">Temp</span></div>
+            <div class="cw-item"><span class="cw-icon">❄</span><span class="cw-val loading">—</span><span class="cw-label">Snow</span></div>
+            <div class="cw-item"><span class="cw-icon">💨</span><span class="cw-val loading">—</span><span class="cw-label">Wind</span></div>
+          </div>
+          <div class="snow-row"><span class="snow-label-text">Snow base</span><div class="snow-track"><div class="snow-fill" style="width:78%"></div></div><span class="snow-num">90–180cm</span></div>
+          <div class="snow-row"><span class="snow-label-text">Total pistes</span><div class="snow-track"><div class="snow-fill" style="width:62%"></div></div><span class="snow-num">224km</span></div>
+          <div class="stats-grid">
+            <div class="stat"><span class="stat-val">3,018m</span><span class="stat-label">Summit</span></div>
+            <div class="stat"><span class="stat-val">224km</span><span class="stat-label">Pistes</span></div>
+            <div class="stat"><span class="stat-val">4★</span><span class="stat-label">Snow safety</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Flims-Laax-Falera</span><span class="tag">Freestyle mecca</span><span class="tag">70% above 2000m</span><span class="tag">Modern lifts</span>
+          </div>
+          <div class="ratings">
+            <div class="rating-row"><span class="r-label">Après ski</span><div class="r-bar"><div class="r-fill" style="width:60%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Terrain</span><div class="r-bar"><div class="r-fill" style="width:80%"></div></div></div>
+            <div class="rating-row"><span class="r-label">Value</span><div class="r-bar"><div class="r-fill" style="width:70%"></div></div></div>
+          </div>
+          <div class="card-divider"></div>
+          <div class="access-section-title">How to get there</div>
+
+          <div class="access-option best">
+            <div class="access-option-label">Best option</div>
+            <div class="access-flight-bar">
+              <span class="iata">KEF</span><span class="flight-arrow">→</span><span class="iata">ZRH</span>
+              <span class="city-name">Zürich</span>
+              <span class="fi-badge">FI568</span>
+            </div>
+            <div class="access-schedule">
+              <div class="access-schedule-flight">Icelandair FI568 · ~3h 45min</div>
+              <div class="access-schedule-times">Dep <strong>07:20</strong> GMT → Arr <strong>12:05</strong> CET</div>
+              <div class="access-schedule-freq">Year-round · Multiple days/week</div>
+            </div>
+            <div class="access-transfers-title">Transfer to resort</div>
+            <div class="access-xfer">
+              <span class="access-xfer-icon">🚌</span>
+              <span class="access-xfer-route">Zürich → Laax</span>
+              <span class="access-xfer-mode">Bus</span>
+              <span class="access-xfer-time">~1.5–2h</span>
+              <span class="access-xfer-tag fastest">Fastest</span>
+            </div>
+          </div>
+
+          <div class="booking-grid">
+            <a href="https://www.airbnb.com/s/Laax--Switzerland/homes?checkin=2026-03-13&checkout=2026-03-18&adults=2" target="_blank" class="booking-btn primary"><span class="btn-icon">🏠</span> Airbnb</a>
+            <a href="https://www.booking.com/searchresults.html?ss=Laax&checkin=2026-03-13&checkout=2026-03-18" target="_blank" class="booking-btn"><span class="btn-icon">🏨</span> Booking.com</a>
+            <a href="https://www.laax.com/en/snow-report" target="_blank" class="booking-btn"><span class="btn-icon">🌨</span> Snow report</a>
+            <a href="https://www.laax.com/en" target="_blank" class="booking-btn"><span class="btn-icon">⛷</span> Resort site</a>
           </div>
         </div>
       </div>
@@ -844,16 +1227,21 @@
             <th><span class="resort-th">Kitzbühel</span></th>
             <th><span class="resort-th">Les Arcs</span></th>
             <th><span class="resort-th">Verbier</span></th>
+            <th><span class="resort-th">Ischgl</span></th>
+            <th><span class="resort-th">Sölden</span></th>
+            <th><span class="resort-th">Lech-Zürs</span></th>
+            <th><span class="resort-th">Engelberg</span></th>
+            <th><span class="resort-th">Laax</span></th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Country</td><td>🇨🇭 CH</td><td>🇫🇷 FR</td><td>🇦🇹 AT</td><td>🇦🇹 AT</td><td>🇫🇷 FR</td><td>🇨🇭 CH</td></tr>
-          <tr><td>Summit</td><td>3,883m</td><td>3,230m</td><td>2,811m</td><td>1,996m</td><td>3,226m</td><td>3,330m</td></tr>
-          <tr><td>Piste km</td><td>322km</td><td>600km</td><td>305km</td><td>188km</td><td>425km</td><td>412km</td></tr>
-          <tr><td>Snow safety</td><td class="t-green">★★★★★</td><td class="t-green">★★★★★</td><td class="t-amber">★★★☆☆</td><td class="t-amber">★★★☆☆</td><td class="t-green">★★★★☆</td><td class="t-green">★★★★☆</td></tr>
-          <tr><td>Current season</td><td class="t-green">Excellent</td><td class="t-green">Exceptional</td><td class="t-amber">Building</td><td class="t-amber">Good</td><td class="t-green">Very good</td><td class="t-green">Very good</td></tr>
-          <tr><td>Après ski</td><td>★★★★☆</td><td>★★★★☆</td><td class="t-green">★★★★★</td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★★☆</td></tr>
-          <tr><td>Value</td><td class="t-amber">★★☆☆☆</td><td>★★★☆☆</td><td class="t-green">★★★★☆</td><td>★★★☆☆</td><td class="t-green">★★★★☆</td><td class="t-warn">★☆☆☆☆</td></tr>
+          <tr><td>Country</td><td>🇨🇭 CH</td><td>🇫🇷 FR</td><td>🇦🇹 AT</td><td>🇦🇹 AT</td><td>🇫🇷 FR</td><td>🇨🇭 CH</td><td>🇦🇹 AT</td><td>🇦🇹 AT</td><td>🇦🇹 AT</td><td>🇨🇭 CH</td><td>🇨🇭 CH</td></tr>
+          <tr><td>Summit</td><td>3,883m</td><td>3,230m</td><td>2,811m</td><td>1,996m</td><td>3,226m</td><td>3,330m</td><td>2,784m</td><td>3,340m</td><td>2,809m</td><td>3,020m</td><td>3,018m</td></tr>
+          <tr><td>Piste km</td><td>322km</td><td>600km</td><td>305km</td><td>188km</td><td>425km</td><td>412km</td><td>239km</td><td>146km</td><td>305km</td><td>82km</td><td>224km</td></tr>
+          <tr><td>Snow safety</td><td class="t-green">★★★★★</td><td class="t-green">★★★★★</td><td class="t-amber">★★★☆☆</td><td class="t-amber">★★★☆☆</td><td class="t-green">★★★★☆</td><td class="t-green">★★★★☆</td><td class="t-green">★★★★☆</td><td class="t-green">★★★★★</td><td class="t-green">★★★★★</td><td class="t-green">★★★★☆</td><td class="t-green">★★★★☆</td></tr>
+          <tr><td>Current season</td><td class="t-green">Excellent</td><td class="t-green">Exceptional</td><td class="t-amber">Building</td><td class="t-amber">Good</td><td class="t-green">Very good</td><td class="t-green">Very good</td><td class="t-green">Good</td><td class="t-green">Excellent</td><td class="t-green">Excellent</td><td class="t-green">Very good</td><td class="t-green">Good</td></tr>
+          <tr><td>Après ski</td><td>★★★★☆</td><td>★★★★☆</td><td class="t-green">★★★★★</td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★★☆</td><td class="t-green">★★★★★</td><td>★★★★☆</td><td>★★★☆☆</td><td>★★☆☆☆</td><td>★★★☆☆</td></tr>
+          <tr><td>Value</td><td class="t-amber">★★☆☆☆</td><td>★★★☆☆</td><td class="t-green">★★★★☆</td><td>★★★☆☆</td><td class="t-green">★★★★☆</td><td class="t-warn">★☆☆☆☆</td><td>★★★☆☆</td><td>★★★☆☆</td><td class="t-amber">★★☆☆☆</td><td>★★★☆☆</td><td>★★★☆☆</td></tr>
           <tr><td>Icelandair flight</td>
             <td class="t-yes">KEF→ZRH</td>
             <td class="t-yes">KEF→ZRH</td>
@@ -861,12 +1249,17 @@
             <td class="t-yes">KEF→SZG</td>
             <td class="t-yes">KEF→ZRH</td>
             <td class="t-yes">KEF→ZRH</td>
+            <td class="t-yes">KEF→INN</td>
+            <td class="t-yes">KEF→INN</td>
+            <td class="t-yes">KEF→INN</td>
+            <td class="t-yes">KEF→ZRH</td>
+            <td class="t-yes">KEF→ZRH</td>
           </tr>
-          <tr><td>Flight time</td><td>~3h 45m</td><td>~3h 45m</td><td>~4h 10m</td><td>~3h 50m</td><td>~3h 45m</td><td>~3h 45m</td></tr>
-          <tr><td>Transfer to resort</td><td>3.5h train</td><td>~4h</td><td>1.5h bus</td><td>1h bus</td><td>4.5h</td><td>2.5h bus</td></tr>
-          <tr><td>Glacier skiing</td><td class="t-yes">✓</td><td class="t-no">—</td><td class="t-no">—</td><td class="t-no">—</td><td class="t-no">—</td><td class="t-no">—</td></tr>
-          <tr><td>Ski-in/ski-out</td><td class="t-partial">Partial</td><td class="t-yes">✓ Fully</td><td class="t-partial">Partial</td><td class="t-no">—</td><td class="t-yes">✓ Fully</td><td class="t-partial">Partial</td></tr>
-          <tr><td>Iconic factor</td><td>Matterhorn</td><td>Highest in EU</td><td>Après legend</td><td class="t-green">Hahnenkamm</td><td>Paradiski</td><td>Prestige</td></tr>
+          <tr><td>Flight time</td><td>~3h 45m</td><td>~3h 45m</td><td>~4h 10m</td><td>~3h 50m</td><td>~3h 45m</td><td>~3h 45m</td><td>~4h 10m</td><td>~4h 10m</td><td>~4h 10m</td><td>~3h 45m</td><td>~3h 45m</td></tr>
+          <tr><td>Transfer to resort</td><td>3.5h train</td><td>~4h</td><td>1.5h bus</td><td>1h bus</td><td>4.5h</td><td>2.5h bus</td><td>1h15 bus</td><td>1.5h bus</td><td>1h35 bus</td><td>1.5h train</td><td>1.5–2h bus</td></tr>
+          <tr><td>Glacier skiing</td><td class="t-yes">✓</td><td class="t-no">—</td><td class="t-no">—</td><td class="t-no">—</td><td class="t-no">—</td><td class="t-no">—</td><td class="t-no">—</td><td class="t-yes">✓</td><td class="t-no">—</td><td class="t-yes">✓</td><td class="t-no">—</td></tr>
+          <tr><td>Ski-in/ski-out</td><td class="t-partial">Partial</td><td class="t-yes">✓ Fully</td><td class="t-partial">Partial</td><td class="t-no">—</td><td class="t-yes">✓ Fully</td><td class="t-partial">Partial</td><td class="t-partial">Partial</td><td class="t-partial">Partial</td><td class="t-partial">Partial</td><td class="t-no">—</td><td class="t-partial">Partial</td></tr>
+          <tr><td>Iconic factor</td><td>Matterhorn</td><td>Highest in EU</td><td>Après legend</td><td class="t-green">Hahnenkamm</td><td>Paradiski</td><td>Prestige</td><td>Party capital</td><td>Twin glaciers</td><td>Royal powder</td><td>Quick access</td><td>Freestyle</td></tr>
           <tr><td>Airbnb</td>
             <td><a href="https://www.airbnb.com/s/Zermatt--Switzerland/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
             <td><a href="https://www.airbnb.com/s/Val-Thorens--France/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
@@ -874,6 +1267,11 @@
             <td><a href="https://www.airbnb.com/s/Kitzbühel--Austria/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
             <td><a href="https://www.airbnb.com/s/Les-Arcs--France/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
             <td><a href="https://www.airbnb.com/s/Verbier--Switzerland/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
+            <td><a href="https://www.airbnb.com/s/Ischgl--Austria/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
+            <td><a href="https://www.airbnb.com/s/Sölden--Austria/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
+            <td><a href="https://www.airbnb.com/s/Lech-Zürs--Austria/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
+            <td><a href="https://www.airbnb.com/s/Engelberg--Switzerland/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
+            <td><a href="https://www.airbnb.com/s/Laax--Switzerland/homes?checkin=2026-03-13&checkout=2026-03-18" target="_blank" style="color:var(--teal);font-size:0.72rem;">Search →</a></td>
           </tr>
         </tbody>
       </table>
@@ -940,6 +1338,22 @@
             <rect x="557" y="332" width="6" height="6" rx="1" fill="#d4a853" transform="rotate(45 560 335)"/>
             <text class="map-resort-label" x="545" y="343" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="8" fill="#b4cfe0">Les Arcs</text>
           </g>
+          <!-- Ground: ZRH → Engelberg -->
+          <line class="ground-path" x1="620" y1="255" x2="650" y2="230" stroke-dasharray="3,3"/>
+          <text x="640" y="225" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" text-anchor="start">1.5h</text>
+          <!-- Engelberg dot -->
+          <g class="map-resort" data-resort="engelberg">
+            <rect x="647" y="227" width="6" height="6" rx="1" fill="#d4a853" transform="rotate(45 650 230)"/>
+            <text class="map-resort-label" x="660" y="234" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="8" fill="#b4cfe0">Engelberg</text>
+          </g>
+          <!-- Ground: ZRH → Laax -->
+          <line class="ground-path" x1="620" y1="255" x2="655" y2="245" stroke-dasharray="3,3"/>
+          <text x="645" y="240" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" text-anchor="start">2h</text>
+          <!-- Laax dot -->
+          <g class="map-resort" data-resort="laax">
+            <rect x="652" y="242" width="6" height="6" rx="1" fill="#d4a853" transform="rotate(45 655 245)"/>
+            <text class="map-resort-label" x="665" y="250" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="8" fill="#b4cfe0">Laax</text>
+          </g>
           <!-- Airport dot: ZRH -->
           <g class="map-airport" data-airport="ZRH" filter="url(#glow)">
             <circle cx="620" cy="255" r="6" fill="#5fc4c0"/>
@@ -982,6 +1396,30 @@
           <g class="map-resort" data-resort="stanton">
             <rect x="692" y="272" width="6" height="6" rx="1" fill="#d4a853" transform="rotate(45 695 275)"/>
             <text class="map-resort-label" x="680" y="284" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="8" fill="#b4cfe0">St. Anton</text>
+          </g>
+          <!-- Ground: INN → Ischgl -->
+          <line class="ground-path" x1="710" y1="250" x2="670" y2="285" stroke-dasharray="3,3"/>
+          <text x="682" y="272" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" text-anchor="end">1h15</text>
+          <!-- Ischgl dot -->
+          <g class="map-resort" data-resort="ischgl">
+            <rect x="667" y="282" width="6" height="6" rx="1" fill="#d4a853" transform="rotate(45 670 285)"/>
+            <text class="map-resort-label" x="655" y="295" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="8" fill="#b4cfe0">Ischgl</text>
+          </g>
+          <!-- Ground: INN → Sölden -->
+          <line class="ground-path" x1="710" y1="250" x2="695" y2="290" stroke-dasharray="3,3"/>
+          <text x="708" y="275" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" text-anchor="start">1.5h</text>
+          <!-- Sölden dot -->
+          <g class="map-resort" data-resort="soelden">
+            <rect x="692" y="287" width="6" height="6" rx="1" fill="#d4a853" transform="rotate(45 695 290)"/>
+            <text class="map-resort-label" x="707" y="295" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="8" fill="#b4cfe0">Sölden</text>
+          </g>
+          <!-- Ground: INN → Lech-Zürs -->
+          <line class="ground-path" x1="710" y1="250" x2="680" y2="270" stroke-dasharray="3,3"/>
+          <text x="688" y="264" font-family="'JetBrains Mono',monospace" font-size="7" fill="#4a6a80" text-anchor="end">1h35</text>
+          <!-- Lech-Zürs dot -->
+          <g class="map-resort" data-resort="lechzuers">
+            <rect x="677" y="267" width="6" height="6" rx="1" fill="#d4a853" transform="rotate(45 680 270)"/>
+            <text class="map-resort-label" x="665" y="280" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="8" fill="#b4cfe0">Lech-Zürs</text>
           </g>
           <!-- Airport dot: INN -->
           <g class="map-airport" data-airport="INN" filter="url(#glow)">
@@ -1122,6 +1560,16 @@
             <span class="transfer-mode">Train</span>
             <span class="transfer-time">~1.5h</span>
           </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚂</span>
+            <span class="transfer-dest">Ischgl</span>
+            <span class="transfer-time">~3h20</span>
+          </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚂</span>
+            <span class="transfer-dest">Sölden</span>
+            <span class="transfer-time">~3h15</span>
+          </div>
         </div>
         <a href="https://www.icelandair.com/flights/to-munich/" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(0,113,188,0.15); border:1px solid rgba(0,113,188,0.3); border-radius:6px; color:#5aabf0; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center; margin-bottom:0.4rem;">Book · Icelandair.com</a>
         <a href="https://www.google.com/travel/flights?q=KEF+to+MUC+March+13+2026" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:6px; color:var(--glacier); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center;">Compare · Google Flights</a>
@@ -1163,6 +1611,11 @@
             <span class="transfer-dest">Lech / Zürs</span>
             <span class="transfer-mode">Bus</span>
             <span class="transfer-time">~1.5h</span>
+          </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚌</span>
+            <span class="transfer-dest">Ischgl</span>
+            <span class="transfer-time">~1h15</span>
           </div>
         </div>
         <a href="https://www.icelandair.com/flights/to-innsbruck/" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(0,113,188,0.15); border:1px solid rgba(0,113,188,0.3); border-radius:6px; color:#5aabf0; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center; margin-bottom:0.4rem;">Book · Icelandair.com</a>
@@ -1206,6 +1659,16 @@
             <span class="transfer-dest">Les Arcs</span>
             <span class="transfer-mode">Train + Bus</span>
             <span class="transfer-time">~4.5h</span>
+          </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚂</span>
+            <span class="transfer-dest">Engelberg</span>
+            <span class="transfer-time">~1.5h</span>
+          </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚌</span>
+            <span class="transfer-dest">Laax</span>
+            <span class="transfer-time">~1.5–2h</span>
           </div>
         </div>
         <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(0,113,188,0.15); border:1px solid rgba(0,113,188,0.3); border-radius:6px; color:#5aabf0; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center; margin-bottom:0.4rem;">Book · Icelandair.com</a>
@@ -1257,6 +1720,31 @@
         <div class="verdict-name">Verbier</div>
         <div class="verdict-text">World-class off-piste, buzzing village, the coolest crowd in the Alps. Most expensive option by far. KEF → ZRH with Icelandair, 2.5h transfer.</div>
       </div>
+      <div class="verdict-card">
+        <div class="verdict-type">Best party destination</div>
+        <div class="verdict-name">Ischgl</div>
+        <div class="verdict-text">The undisputed party capital of the Alps with the Silvretta Arena cross-border skiing into Switzerland. KEF → INN with Icelandair, then 1h15 bus to non-stop fun.</div>
+      </div>
+      <div class="verdict-card">
+        <div class="verdict-type">Best glacier guarantee</div>
+        <div class="verdict-name">Sölden</div>
+        <div class="verdict-text">Twin glaciers reaching 3,340m make this the most snow-sure option after Zermatt. World Cup opener venue. KEF → INN, then 1.5h bus into the Ötztal.</div>
+      </div>
+      <div class="verdict-card" style="background: rgba(212,168,83,0.05); border-color: rgba(212,168,83,0.2);">
+        <div class="verdict-type" style="color:var(--gold);">Snowiest + premium Arlberg</div>
+        <div class="verdict-name">Lech-Zürs</div>
+        <div class="verdict-text">The snowiest resort in the Alps sharing the 305km Ski Arlberg with St. Anton. Royal favourite, premium feel, powder paradise. KEF → INN, then 1h35 bus.</div>
+      </div>
+      <div class="verdict-card">
+        <div class="verdict-type">Fastest to the slopes</div>
+        <div class="verdict-name">Engelberg-Titlis</div>
+        <div class="verdict-text">Closest resort to ZRH airport — just 1.5h by direct train. Glacier skiing to 3,020m in a charming monastery village. Ski the same afternoon you land.</div>
+      </div>
+      <div class="verdict-card">
+        <div class="verdict-type">Best value in Switzerland</div>
+        <div class="verdict-name">Laax</div>
+        <div class="verdict-text">224km of modern terrain with 70% above 2000m and freestyle mecca status. Best value for Swiss skiing. KEF → ZRH, then 1.5–2h bus.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1295,7 +1783,12 @@ const resorts = [
   { id: 'stanton',     name: 'St. Anton',    lat: 47.13,   lon: 10.27,  stripName: 'St. Anton' },
   { id: 'kitzbuehel',  name: 'Kitzbühel',    lat: 47.448,  lon: 12.391, stripName: 'Kitzbühel' },
   { id: 'lesarcs',     name: 'Les Arcs',     lat: 45.57,   lon: 6.83,   stripName: 'Les Arcs' },
-  { id: 'verbier',     name: 'Verbier',      lat: 46.10,   lon: 7.23,   stripName: 'Verbier' }
+  { id: 'verbier',     name: 'Verbier',      lat: 46.10,   lon: 7.23,   stripName: 'Verbier' },
+  { id: 'ischgl',      name: 'Ischgl',           lat: 47.01,  lon: 10.29, stripName: 'Ischgl' },
+  { id: 'soelden',     name: 'Sölden',           lat: 46.97,  lon: 10.87, stripName: 'Sölden' },
+  { id: 'lechzuers',   name: 'Lech-Zürs',        lat: 47.21,  lon: 10.14, stripName: 'Lech-Zürs' },
+  { id: 'engelberg',   name: 'Engelberg-Titlis',  lat: 46.82,  lon: 8.40,  stripName: 'Engelberg' },
+  { id: 'laax',        name: 'Laax',              lat: 46.84,  lon: 9.26,  stripName: 'Laax' }
 ];
 
 function weatherIcon(code, isDay) {
@@ -1374,7 +1867,7 @@ setInterval(fetchAllWeather, 600000);
   mapObs.observe(mapContainer);
 
   // Click-to-scroll: resort dots → resort cards
-  const resortOrder = { zermatt: 0, valthorens: 1, stanton: 2, kitzbuehel: 3, lesarcs: 4, verbier: 5 };
+  const resortOrder = { zermatt: 0, valthorens: 1, stanton: 2, kitzbuehel: 3, lesarcs: 4, verbier: 5, ischgl: 6, soelden: 7, lechzuers: 8, engelberg: 9, laax: 10 };
   document.querySelectorAll('.map-resort').forEach(el => {
     el.addEventListener('click', () => {
       const idx = resortOrder[el.dataset.resort];
