@@ -223,6 +223,19 @@
     .route-map-container { padding: 1rem; }
     .map-resort-label, .map-transfer-label, .map-airport-name { display: none; }
   }
+
+  /* TRANSFER ROWS */
+  .transfers-box { background: rgba(212,168,83,0.04); border: 1px solid rgba(212,168,83,0.12); border-radius: 8px; padding: 0.6rem 0.8rem; margin-bottom: 1rem; }
+  .transfers-label { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem; }
+  .transfer-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+  .transfer-row:last-child { border-bottom: none; }
+  .transfer-icon { font-size: 0.85rem; width: 1.3rem; text-align: center; flex-shrink: 0; }
+  .transfer-dest { font-size: 0.75rem; color: var(--snow); flex: 1; }
+  .transfer-time { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--glacier); letter-spacing: 0.04em; flex-shrink: 0; }
+  .transfer-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 3px; flex-shrink: 0; }
+  .transfer-tag.best { background: rgba(212,168,83,0.15); color: var(--gold); }
+  .transfer-tag.scenic { background: rgba(95,196,192,0.12); color: var(--teal); }
+  .transfer-mode { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--muted); flex-shrink: 0; }
 </style>
 </head>
 <body>
@@ -833,7 +846,28 @@
           <div style="font-size:0.75rem; color:var(--snow); margin-bottom:0.15rem;">Departs KEF <strong>08:00–08:40</strong> → Arrives SZG <strong>12:50–13:30</strong></div>
           <div style="font-size:0.65rem; color:var(--muted);">Weekly · Saturdays · Winter season only</div>
         </div>
-        <div style="font-size:0.72rem; color:var(--muted); margin-bottom:1.2rem;">→ Kitzbühel (1h bus) · Zell am See · Saalbach</div>
+        <div class="transfers-box">
+          <div class="transfers-label">Transfers to resorts</div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚌</span>
+            <span class="transfer-dest">Kitzbühel</span>
+            <span class="transfer-mode">Bus</span>
+            <span class="transfer-time">~1h</span>
+            <span class="transfer-tag best">Fastest</span>
+          </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚌</span>
+            <span class="transfer-dest">Zell am See</span>
+            <span class="transfer-mode">Bus</span>
+            <span class="transfer-time">~1.5h</span>
+          </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚌</span>
+            <span class="transfer-dest">Saalbach</span>
+            <span class="transfer-mode">Bus</span>
+            <span class="transfer-time">~1.5h</span>
+          </div>
+        </div>
         <a href="https://www.icelandair.com/flights/to-salzburg/" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(0,113,188,0.15); border:1px solid rgba(0,113,188,0.3); border-radius:6px; color:#5aabf0; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center; margin-bottom:0.4rem;">Book · Icelandair.com</a>
         <a href="https://www.google.com/travel/flights?q=KEF+to+SZG+March+13+2026" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:6px; color:var(--glacier); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center;">Compare · Google Flights</a>
       </div>
@@ -849,7 +883,27 @@
           <div style="font-size:0.75rem; color:var(--snow); margin-bottom:0.15rem;">Departs KEF <strong>07:20</strong> → Arrives MUC <strong>12:05</strong></div>
           <div style="font-size:0.65rem; color:var(--muted);">Daily · Year-round · Most flexible</div>
         </div>
-        <div style="font-size:0.72rem; color:var(--muted); margin-bottom:1.2rem;">→ Kitzbühel (2h train) · St. Anton (2.5h train) · Zugspitze</div>
+        <div class="transfers-box">
+          <div class="transfers-label">Transfers to resorts</div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚂</span>
+            <span class="transfer-dest">Kitzbühel</span>
+            <span class="transfer-mode">Train</span>
+            <span class="transfer-time">~2h</span>
+          </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚂</span>
+            <span class="transfer-dest">St. Anton</span>
+            <span class="transfer-mode">Train</span>
+            <span class="transfer-time">~2.5h</span>
+          </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚂</span>
+            <span class="transfer-dest">Zugspitze</span>
+            <span class="transfer-mode">Train</span>
+            <span class="transfer-time">~1.5h</span>
+          </div>
+        </div>
         <a href="https://www.icelandair.com/flights/to-munich/" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(0,113,188,0.15); border:1px solid rgba(0,113,188,0.3); border-radius:6px; color:#5aabf0; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center; margin-bottom:0.4rem;">Book · Icelandair.com</a>
         <a href="https://www.google.com/travel/flights?q=KEF+to+MUC+March+13+2026" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:6px; color:var(--glacier); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center;">Compare · Google Flights</a>
       </div>
@@ -865,7 +919,33 @@
           <div style="font-size:0.75rem; color:var(--snow); margin-bottom:0.15rem;">Departs KEF <strong>09:55</strong> → Arrives INN <strong>15:05</strong></div>
           <div style="font-size:0.65rem; color:var(--muted);">Weekly · Saturdays · Winter season only</div>
         </div>
-        <div style="font-size:0.72rem; color:var(--muted); margin-bottom:1.2rem;">→ St. Anton (1.5h) · Kitzbühel (1.5h) · Sölden · Lech</div>
+        <div class="transfers-box">
+          <div class="transfers-label">Transfers to resorts</div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚌</span>
+            <span class="transfer-dest">St. Anton</span>
+            <span class="transfer-mode">Bus</span>
+            <span class="transfer-time">~1.5h</span>
+          </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚌</span>
+            <span class="transfer-dest">Kitzbühel</span>
+            <span class="transfer-mode">Bus</span>
+            <span class="transfer-time">~1.5h</span>
+          </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚌</span>
+            <span class="transfer-dest">Sölden</span>
+            <span class="transfer-mode">Bus</span>
+            <span class="transfer-time">~1h</span>
+          </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚌</span>
+            <span class="transfer-dest">Lech / Zürs</span>
+            <span class="transfer-mode">Bus</span>
+            <span class="transfer-time">~1.5h</span>
+          </div>
+        </div>
         <a href="https://www.icelandair.com/flights/to-innsbruck/" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(0,113,188,0.15); border:1px solid rgba(0,113,188,0.3); border-radius:6px; color:#5aabf0; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center; margin-bottom:0.4rem;">Book · Icelandair.com</a>
         <a href="https://www.google.com/travel/flights?q=KEF+to+INN+March+13+2026" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:6px; color:var(--glacier); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center;">Compare · Google Flights</a>
       </div>
@@ -881,7 +961,34 @@
           <div style="font-size:0.75rem; color:var(--snow); margin-bottom:0.15rem;">Departs KEF <strong>07:20</strong> → Arrives ZRH <strong>12:05</strong></div>
           <div style="font-size:0.65rem; color:var(--muted);">Multiple days/week · Year-round</div>
         </div>
-        <div style="font-size:0.72rem; color:var(--muted); margin-bottom:1.2rem;">→ Zermatt · Verbier · Val Thorens · Les Arcs</div>
+        <div class="transfers-box">
+          <div class="transfers-label">Transfers to resorts</div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚂</span>
+            <span class="transfer-dest">Zermatt</span>
+            <span class="transfer-mode">Train</span>
+            <span class="transfer-time">~3.5h</span>
+            <span class="transfer-tag scenic">Scenic</span>
+          </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚌</span>
+            <span class="transfer-dest">Verbier</span>
+            <span class="transfer-mode">Bus</span>
+            <span class="transfer-time">~2.5h</span>
+          </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚌</span>
+            <span class="transfer-dest">Val Thorens</span>
+            <span class="transfer-mode">Bus</span>
+            <span class="transfer-time">~4h</span>
+          </div>
+          <div class="transfer-row">
+            <span class="transfer-icon">🚂</span>
+            <span class="transfer-dest">Les Arcs</span>
+            <span class="transfer-mode">Train + Bus</span>
+            <span class="transfer-time">~4.5h</span>
+          </div>
+        </div>
         <a href="https://www.icelandair.com/flights/to-zurich/" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(0,113,188,0.15); border:1px solid rgba(0,113,188,0.3); border-radius:6px; color:#5aabf0; text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center; margin-bottom:0.4rem;">Book · Icelandair.com</a>
         <a href="https://www.google.com/travel/flights?q=KEF+to+ZRH+March+13+2026" target="_blank" style="display:block; padding:0.65rem 1rem; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:6px; color:var(--glacier); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; text-align:center;">Compare · Google Flights</a>
       </div>
